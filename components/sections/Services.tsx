@@ -2,78 +2,85 @@
 
 import { motion } from "framer-motion";
 import {
-  Workflow,
+  ArrowUpRight,
   Bot,
-  Layers,
-  Brain,
+  BrainCircuit,
+  DatabaseZap,
   GraduationCap,
-  Database,
+  Layers3,
+  Workflow,
 } from "lucide-react";
 import { services } from "@/config/site";
 
-const iconMap: Record<string, React.ComponentType<{ size?: number; className?: string }>> = {
-  Workflow,
-  Bot,
-  Layers,
-  Brain,
-  GraduationCap,
-  Database,
-};
+const serviceStyles = [
+  { bg: "#E74C3C", text: "#FFFFFF", muted: "rgba(255,255,255,.72)", Icon: Workflow },
+  { bg: "#B8F500", text: "#101010", muted: "rgba(16,16,16,.62)", Icon: Bot },
+  { bg: "#6C5CE7", text: "#FFFFFF", muted: "rgba(255,255,255,.7)", Icon: Layers3 },
+  { bg: "#F4C95D", text: "#101010", muted: "rgba(16,16,16,.62)", Icon: BrainCircuit },
+  { bg: "#5DE2C5", text: "#101010", muted: "rgba(16,16,16,.62)", Icon: GraduationCap },
+  { bg: "#F7F4EF", text: "#101010", muted: "rgba(16,16,16,.58)", Icon: DatabaseZap },
+];
 
 export default function Services() {
   return (
-    <section className="relative py-24 lg:py-32">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="relative bg-[#0a0a0a] section-space" id="services">
+      <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mb-16 lg:mb-20"
+          className="mb-16 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-8 lg:mb-20"
         >
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#F5A623] mb-4 block">
-            Services
-          </span>
-          <h2 className="font-[var(--font-syne)] text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.1]">
-            What We Build
+          <div className="lg:col-span-3">
+            <span className="section-kicker text-[#F7F4EF]/35">What we build</span>
+          </div>
+          <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-[#F7F4EF] sm:text-5xl lg:col-span-6 lg:text-7xl">
+            Practical AI systems with personality.
           </h2>
+          <p className="max-w-md text-base leading-8 text-[#F7F4EF]/50 sm:text-lg lg:col-span-3">
+            Strategy, product design, engineering, and deployment brought
+            together in one accountable delivery team.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.04] rounded-2xl overflow-hidden">
-          {services.map((service, i) => {
-            const Icon = iconMap[service.icon];
-            return (
+        <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
+            {services.map((service, i) => {
+              const style = serviceStyles[i];
+              const Icon = style.Icon;
+              return (
               <motion.div
                 key={service.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="group relative bg-[#0a0a0a] p-8 lg:p-10 hover:bg-white/[0.02] transition-all duration-500"
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                whileHover={{ y: -6 }}
+                className="surface-card group relative flex min-h-[340px] flex-col justify-between overflow-hidden rounded-[2rem] p-7 lg:p-9"
+                style={{ backgroundColor: style.bg, color: style.text }}
                 id={`service-${i}`}
               >
-                {/* Icon */}
-                <div className="w-12 h-12 rounded-xl border border-white/[0.08] bg-white/[0.02] flex items-center justify-center mb-6 group-hover:border-[#F5A623]/30 group-hover:bg-[#F5A623]/[0.05] transition-all duration-500">
-                  {Icon && (
-                    <Icon
-                      size={20}
-                      className="text-[#888] group-hover:text-[#F5A623] transition-colors duration-500"
-                    />
-                  )}
+                <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border-[35px] border-current opacity-[0.08] transition-transform duration-700 group-hover:scale-125" />
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] font-mono tracking-[0.15em] opacity-45">
+                    0{i + 1}
+                  </span>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-current border-opacity-20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">
+                    <ArrowUpRight size={16} />
+                  </div>
                 </div>
 
-                <h3 className="font-[var(--font-syne)] text-lg font-bold text-white mb-3 group-hover:text-[#F5A623] transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-sm text-[#888] leading-relaxed">
-                  {service.description}
-                </p>
-
-                {/* Corner accent */}
-                <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-[#F5A623]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-3xl" />
+                <div className="relative">
+                  <Icon size={38} strokeWidth={1.6} className="mb-8 opacity-75" />
+                  <h3 className="mb-4 max-w-xs font-[var(--font-syne)] text-2xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-3xl">
+                    {service.title}
+                  </h3>
+                  <p className="max-w-sm text-sm leading-[1.75]" style={{ color: style.muted }}>
+                    {service.description}
+                  </p>
+                </div>
               </motion.div>
-            );
-          })}
+            )})}
         </div>
       </div>
     </section>

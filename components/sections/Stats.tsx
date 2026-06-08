@@ -4,6 +4,28 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { stats } from "@/config/site";
 
+// Each stat gets a unique background color for visual variety
+const statColors = [
+  "bg-[#F7F4EF]", // cream (default)
+  "bg-[#E74C3C]", // warm red (accent)
+  "bg-[#F7F4EF]", // cream
+  "bg-[#F7F4EF]", // cream
+];
+
+const statTextColors = [
+  "text-black",
+  "text-white",
+  "text-black",
+  "text-black",
+];
+
+const statSubColors = [
+  "text-black/40",
+  "text-white/60",
+  "text-black/40",
+  "text-black/40",
+];
+
 function AnimatedNumber({ value }: { value: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
@@ -36,33 +58,44 @@ function AnimatedNumber({ value }: { value: string }) {
 
 export default function Stats() {
   return (
-    <section className="relative py-20 lg:py-24">
-      {/* Border lines */}
-      <div className="line-separator" />
+    <section className="relative bg-[#F7F4EF] section-space">
+      <div className="site-container">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65 }}
+          className="mx-auto mb-14 max-w-3xl text-center lg:mb-16"
+        >
+          <span className="section-kicker justify-center text-black/40">
+            Track record
+          </span>
+          <h2 className="mt-6 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-black sm:text-5xl">
+            Experience you can measure.
+          </h2>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="text-center lg:border-r last:border-r-0 border-white/[0.06]"
+              whileHover={{ y: -6, scale: 1.01 }}
+              className={`surface-card flex min-h-[240px] flex-col items-center justify-center rounded-3xl border border-black/[0.06] p-8 text-center lg:p-10 ${statColors[i]}`}
             >
-              <div className="font-[var(--font-syne)] text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text mb-3">
+              <div className={`font-[var(--font-syne)] text-5xl sm:text-6xl lg:text-7xl font-bold ${statTextColors[i]} leading-none`}>
                 <AnimatedNumber value={stat.value} />
               </div>
-              <p className="text-xs sm:text-sm text-[#888] uppercase tracking-[0.15em]">
+              <p className={`max-w-[12rem] text-xs uppercase leading-5 tracking-[0.2em] ${statSubColors[i]} mt-6`}>
                 {stat.label}
               </p>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <div className="line-separator" />
     </section>
   );
 }

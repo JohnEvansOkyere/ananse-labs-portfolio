@@ -58,7 +58,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${syne.variable}`}>
-      <body className="noise-overlay">
+      <body>
         {children}
       </body>
     </html>

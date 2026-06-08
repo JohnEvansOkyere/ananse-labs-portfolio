@@ -1,166 +1,395 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0a0a;
-  --color-foreground: #fafafa;
-  --color-accent: #F5A623;
-  --color-accent-hover: #e6991e;
-  --color-accent-dim: rgba(245, 166, 35, 0.15);
-  --color-muted: #888888;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-card: rgba(255, 255, 255, 0.03);
-  --color-card-hover: rgba(255, 255, 255, 0.06);
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-display: "Syne", system-ui, sans-serif;
+  --color-background: #000000;
+  --color-foreground: #F7F4EF;
+  --color-cream: #F7F4EF;
+  --color-cream-dark: #EDE9E1;
+  --color-accent: #F7F4EF;
+  --color-muted: #999999;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-border-dark: rgba(0, 0, 0, 0.08);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-syne), system-ui, sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
-  background-color: #0a0a0a;
+  background-color: #000000;
+  scroll-padding-top: 104px;
 }
 
 body {
-  background-color: #0a0a0a;
-  color: #fafafa;
-  font-family: "Inter", system-ui, sans-serif;
+  background-color: #000000;
+  color: #F7F4EF;
+  font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* Selection */
-::selection {
-  background-color: rgba(245, 166, 35, 0.3);
-  color: #fafafa;
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Marquee animation */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+::selection {
+  background-color: rgba(247, 244, 239, 0.2);
+  color: #F7F4EF;
+}
+
+/* Shared layout rhythm */
+.site-container {
+  width: min(100% - 2rem, 1480px);
+  margin-inline: auto;
+}
+
+.section-space {
+  padding-block: clamp(6rem, 10vw, 10rem);
+}
+
+.section-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.section-kicker::before {
+  width: 1.75rem;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  opacity: 0.45;
+}
+
+.surface-card {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.3s ease,
+    box-shadow 0.45s ease;
+}
+
+.surface-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.18);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(247, 244, 239, 0.15);
+  border-radius: 2px;
+}
+
+/* ============================================
+   ASCII GRID BACKGROUND
+   ============================================ */
+.ascii-grid {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ascii-grid canvas {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================
+   VIEWPORT BORDER FRAME
+   ============================================ */
+.viewport-frame {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border: 1px solid rgba(247, 244, 239, 0.06);
+}
+
+/* ============================================
+   SECTION BACKGROUNDS
+   ============================================ */
+.section-black {
+  background-color: #000000;
+  color: #F7F4EF;
+}
+
+.section-cream {
+  background-color: #F7F4EF;
+  color: #000000;
+}
+
+.section-cream ::selection {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #000;
+}
+
+/* ============================================
+   MARQUEE
+   ============================================ */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
-  animation: marquee 30s linear infinite;
+  animation: marquee 40s linear infinite;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #F5A623 0%, #ff8a00 50%, #F5A623 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* ============================================
+   PILL BUTTON (Verteal-style)
+   ============================================ */
+.pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Subtle grain texture overlay */
-.noise-overlay::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0.015;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  z-index: 9999;
+.pill-btn:hover .pill-arrow {
+  transform: rotate(8deg) scale(1.06);
 }
 
-/* Glow effect */
-.glow {
-  box-shadow: 0 0 40px rgba(245, 166, 35, 0.1), 0 0 80px rgba(245, 166, 35, 0.05);
+.pill-btn .pill-label {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
-/* Line separator */
+.pill-btn .pill-arrow {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+/* Light variant (for dark backgrounds) */
+.pill-btn-light {
+  border: 1px solid rgba(247, 244, 239, 0.2);
+}
+.pill-btn-light .pill-label {
+  color: #F7F4EF;
+}
+.pill-btn-light .pill-arrow {
+  background-color: #F7F4EF;
+  color: #000;
+}
+.pill-btn-light:hover {
+  background-color: rgba(247, 244, 239, 0.06);
+  border-color: rgba(247, 244, 239, 0.4);
+}
+
+/* Dark variant (for light backgrounds) */
+.pill-btn-dark {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+.pill-btn-dark .pill-label {
+  color: #000;
+}
+.pill-btn-dark .pill-arrow {
+  background-color: #000;
+  color: #F7F4EF;
+}
+.pill-btn-dark:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Solid variant */
+.pill-btn-solid {
+  background-color: #000;
+  border: 1px solid #000;
+}
+.pill-btn-solid .pill-label {
+  color: #F7F4EF;
+}
+.pill-btn-solid .pill-arrow {
+  background-color: #F7F4EF;
+  color: #000;
+}
+.pill-btn-solid:hover {
+  background-color: #1a1a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+/* Hero CTA — large, cream-filled, high-contrast */
+.pill-btn-hero {
+  background-color: #F7F4EF;
+  border: 1px solid #F7F4EF;
+}
+.pill-btn-hero .pill-label {
+  color: #0a0a0a;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 32px;
+  letter-spacing: -0.01em;
+}
+.pill-btn-hero .pill-arrow {
+  width: 50px;
+  height: 50px;
+  background-color: #0a0a0a;
+  color: #F7F4EF;
+}
+.pill-btn-hero:hover {
+  background-color: #ede9e3;
+  border-color: #ede9e3;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 32px rgba(247, 244, 239, 0.15);
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    width: min(100% - 3rem, 1280px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    width: min(100% - 4rem, 1480px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .surface-card:hover,
+  .pill-btn:hover {
+    transform: none;
+  }
+}
+
+/* ============================================
+   STATUS BADGES
+   ============================================ */
+.badge-shipped {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+  border: 1px solid rgba(34, 197, 94, 0.15);
+}
+.badge-live {
+  background: rgba(59, 130, 246, 0.1);
+  color: #2563eb;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+}
+.badge-client {
+  background: rgba(168, 85, 247, 0.1);
+  color: #9333ea;
+  border: 1px solid rgba(168, 85, 247, 0.15);
+}
+.badge-internal {
+  background: rgba(245, 158, 11, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(245, 158, 11, 0.15);
+}
+.badge-ongoing {
+  background: rgba(236, 72, 153, 0.1);
+  color: #db2777;
+  border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+/* ============================================
+   LINE SEPARATOR
+   ============================================ */
 .line-separator {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.08),
-    transparent
-  );
+  background: rgba(0, 0, 0, 0.08);
 }
 
-/* Hero background particles */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.6;
-  }
-  90% {
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-100px) translateX(50px);
-  }
+.line-separator-light {
+  height: 1px;
+  background: rgba(247, 244, 239, 0.08);
 }
 
-.particle {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: rgba(245, 166, 35, 0.4);
-  border-radius: 50%;
+/* ============================================
+   FLOATING TAGS ANIMATION
+   ============================================ */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(2deg); }
 }
 
-/* Status badge colors */
-.badge-shipped {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-  border: 1px solid rgba(34, 197, 94, 0.2);
+@keyframes float-medium {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(-3deg); }
 }
 
-.badge-live {
-  background: rgba(59, 130, 246, 0.15);
-  color: #3b82f6;
-  border: 1px solid rgba(59, 130, 246, 0.2);
+@keyframes float-fast {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(1.5deg); }
 }
 
-.badge-client {
-  background: rgba(168, 85, 247, 0.15);
-  color: #a855f7;
-  border: 1px solid rgba(168, 85, 247, 0.2);
+.float-slow { animation: float-slow 6s ease-in-out infinite; }
+.float-medium { animation: float-medium 5s ease-in-out infinite; }
+.float-fast { animation: float-fast 4s ease-in-out infinite; }
+
+/* ============================================
+   NAV LINK HOVER (text slide effect)
+   ============================================ */
+.nav-link-slide {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
 }
 
-.badge-internal {
-  background: rgba(245, 166, 35, 0.15);
-  color: #F5A623;
-  border: 1px solid rgba(245, 166, 35, 0.2);
+.nav-link-slide span {
+  display: block;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.badge-ongoing {
-  background: rgba(236, 72, 153, 0.15);
-  color: #ec4899;
-  border: 1px solid rgba(236, 72, 153, 0.2);
+.nav-link-slide:hover span:first-child {
+  transform: translateY(-100%);
+}
+
+.nav-link-slide:hover span:last-child {
+  transform: translateY(-100%);
 }

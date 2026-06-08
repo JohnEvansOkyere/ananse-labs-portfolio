@@ -9,16 +9,18 @@ export const siteConfig = {
   location: "Accra, Ghana",
   tagline: "Building intelligent systems from Accra to the world.",
   heroHeadline:
-    "We don't just consult on AI — we build it, ship it, and make it work for your business.",
+    "We build AI systems\nthat actually work\nfor your business.",
   heroSubheadline:
-    "Ananse AI Labs is an AI automation agency based in Accra, Ghana — building intelligent systems, automation workflows, and AI-powered products for businesses across Africa and beyond.",
-  ctaText: "Book a Call",
-  ctaSecondary: "See Our Work",
+    "We don't just consult — we become part of your team.\nThen we build, ship, and iterate from the inside out.",
+  ctaText: "Let's work together",
+  ctaSecondary: "Learn our approach",
   ctaBooking: "Book a 15-min Call",
-  ctaAvailability: "2 spots available for new projects this quarter",
+  ctaAvailability: "2 spots left for new projects this quarter",
   ctaHeadline: "Ready to build something real?",
   ctaSubtext:
-    "Whether you have a clear brief or just an idea — let's talk. No pitch decks, no fluff.",
+    "Great products come from teams that are close enough to care — and opinionated enough to change things.",
+  bottomLine: "Opinionated AI engineering studio",
+  timeZone: "Accra, Ghana — ",
 };
 
 export const navLinks = [
@@ -47,7 +49,7 @@ export const stats = [
   { value: "10+", label: "Production systems shipped" },
   { value: "5+", label: "Countries with clients" },
   { value: "3", label: "LLM providers integrated" },
-  { value: "100+", label: "Professionals trained in AI" },
+  { value: "100+", label: "Professionals trained" },
 ];
 
 export const services = [

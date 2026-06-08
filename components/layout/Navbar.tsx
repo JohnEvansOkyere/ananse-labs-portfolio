@@ -2,120 +2,137 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { siteConfig, navLinks } from "@/config/site";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-white/[0.06]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <a
-            href="#"
-            className="relative group"
-            id="nav-logo"
-          >
-            <span className="font-[var(--font-syne)] text-xl font-bold tracking-tight text-white">
-              Ananse
-            </span>
-            <span className="font-[var(--font-syne)] text-xl font-bold tracking-tight text-[#F5A623] ml-1">
-              AI
-            </span>
-            <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#F5A623] transition-all duration-300 group-hover:w-full" />
-          </a>
+    <>
+      {/* Viewport border frame */}
+      <div className="viewport-frame" />
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-10">
+      <nav
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+        aria-label="Primary navigation"
+      >
+        <div
+          className={`site-container flex items-center justify-between rounded-full border px-4 py-3 transition-all duration-500 sm:px-5 ${
+            scrolled
+              ? "border-white/10 bg-black/75 shadow-[0_12px_40px_rgba(0,0,0,0.28)] backdrop-blur-xl"
+              : "border-white/[0.07] bg-black/25 backdrop-blur-md"
+          }`}
+        >
+          <motion.a
+            href="#hero"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 font-[var(--font-syne)] text-base font-bold tracking-[-0.03em] text-[#F7F4EF] sm:text-lg"
+            aria-label="Ananse AI Labs home"
+          >
+            ananse<span className="text-[#E74C3C]">.</span>
+          </motion.a>
+
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 id={`nav-${link.label.toLowerCase()}`}
-                className="relative text-sm font-medium text-[#888] hover:text-white transition-colors duration-300 group"
+                className="rounded-full px-4 py-2 text-sm font-medium text-[#F7F4EF]/60 transition-all duration-300 hover:bg-white/[0.07] hover:text-[#F7F4EF]"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#F5A623] transition-all duration-300 group-hover:w-full" />
               </a>
             ))}
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="hidden md:block"
+          >
             <a
               href={siteConfig.calendly}
               id="nav-cta"
-              className="px-5 py-2.5 text-sm font-medium bg-[#F5A623] text-[#0a0a0a] rounded-full hover:bg-[#e6991e] transition-all duration-300 hover:shadow-[0_0_20px_rgba(245,166,35,0.3)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#F7F4EF] px-5 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_28px_rgba(247,244,239,0.14)]"
             >
-              {siteConfig.ctaText}
+              <span>{siteConfig.ctaText}</span>
+              <ArrowUpRight
+                size={14}
+                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
             </a>
-          </div>
+          </motion.div>
 
-          {/* Mobile Menu Button */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-white p-2"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-[#F7F4EF] transition-colors hover:bg-white/10 md:hidden"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
             id="nav-mobile-toggle"
-            aria-label="Toggle menu"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={19} /> : <Menu size={19} />}
           </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
-        {isOpen && (
+        {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/[0.06] overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black px-6"
           >
-            <div className="px-6 py-8 flex flex-col gap-6">
+            <div className="flex w-full max-w-sm flex-col items-center gap-3">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  onClick={() => setIsOpen(false)}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  onClick={() => setMobileOpen(false)}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="text-2xl font-[var(--font-syne)] font-semibold text-white/80 hover:text-[#F5A623] transition-colors"
+                  className="w-full rounded-2xl border border-white/[0.07] px-6 py-4 text-center font-[var(--font-syne)] text-2xl font-bold text-[#F7F4EF] transition-colors hover:bg-white/[0.06]"
                 >
                   {link.label}
                 </motion.a>
               ))}
               <motion.a
                 href={siteConfig.calendly}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.4 }}
-                className="inline-block w-fit px-6 py-3 text-base font-medium bg-[#F5A623] text-[#0a0a0a] rounded-full mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="pill-btn pill-btn-hero mt-5"
+                onClick={() => setMobileOpen(false)}
               >
-                {siteConfig.ctaText}
+                <span className="pill-label">{siteConfig.ctaText}</span>
+                <span className="pill-arrow">
+                  <ArrowUpRight size={14} />
+                </span>
               </motion.a>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 }

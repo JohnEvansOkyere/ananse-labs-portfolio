@@ -15,18 +15,28 @@ export default function Home() {
     <>
       <Navbar />
       <main>
+        {/* BLACK: Hero + Marquee */}
         <Hero />
         <Marquee />
+
+        {/* CREAM: About + Approach */}
         <About />
-        <div className="line-separator" />
+        <div className="section-cream">
+          <div className="site-container">
+            <div className="h-[1px] bg-black/[0.06]" />
+          </div>
+        </div>
         <Approach />
-        <div className="line-separator" />
+
+        {/* BLACK: Services + Work */}
         <Services />
-        <div className="line-separator" />
         <Work />
+
+        {/* CREAM: Stats + CTA */}
         <Stats />
         <CTA />
-        <div className="line-separator" />
+
+        {/* DARK: FAQ */}
         <FAQ />
       </main>
       <Footer />
