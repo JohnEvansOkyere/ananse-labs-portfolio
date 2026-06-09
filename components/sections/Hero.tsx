@@ -255,7 +255,7 @@ export default function Hero() {
                   >
                     {/* Gmail */}
                     <a
-                      href="mailto:johnevansokyere@gmail.com"
+                      href={`mailto:${siteConfig.email}`}
                       title="Send email"
                       className="flex h-24 w-24 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.05] transition-all hover:border-[#EA4335]/40 hover:bg-[#EA4335]/15 hover:scale-105"
                     >
@@ -270,7 +270,7 @@ export default function Hero() {
 
                     {/* WhatsApp */}
                     <a
-                      href="https://wa.me/23354494643"
+                      href={siteConfig.whatsapp}
                       target="_blank"
                       rel="noopener noreferrer"
                       title="WhatsApp"

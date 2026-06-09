@@ -1,11 +1,12 @@
 export const siteConfig = {
   name: "Ananse AI Labs",
   founder: "John Evans Okyere",
-  email: "hello@anaselabs.com",
+  email: "johnevansokyere@gmail.com",
   github: "https://github.com/JohnEvansOkyere",
   linkedin: "https://www.linkedin.com/in/john-evans-okyere/",
   twitter: "https://x.com/Ananselab",
-  calendly: "#",
+  calendly: "https://calendly.com/johnevansokyere/30min",
+  whatsapp: "https://wa.me/233544954643",
   location: "Accra, Ghana",
   tagline: "Building intelligent systems from Accra to the world.",
   heroHeadline:

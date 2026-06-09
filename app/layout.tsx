@@ -38,12 +38,13 @@ export const metadata: Metadata = {
     siteName: "Ananse AI Labs",
     type: "website",
     locale: "en_US",
+    images: [{ url: "/ananselogo.jpg", width: 800, height: 800, alt: "Ananse AI Labs" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ananse AI Labs — AI Automation Agency",
-    description:
-      "Building intelligent systems from Accra to the world.",
+    description: "Building intelligent systems from Accra to the world.",
+    images: ["/ananselogo.jpg"],
   },
   robots: {
     index: true,
