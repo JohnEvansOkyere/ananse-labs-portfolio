@@ -178,12 +178,25 @@ function ProjectCard({
               </span>
             )}
           </div>
-          <div
-            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
-            style={{ borderColor: `${m.accent}55`, color: m.accent }}
-          >
-            <ArrowUpRight size={14} />
-          </div>
+          {project.url ? (
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-transform duration-300 hover:scale-110"
+              style={{ borderColor: `${m.accent}55`, color: m.accent, backgroundColor: `${m.accent}15` }}
+            >
+              <ArrowUpRight size={14} />
+            </a>
+          ) : (
+            <div
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
+              style={{ borderColor: `${m.accent}55`, color: m.accent }}
+            >
+              <ArrowUpRight size={14} />
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

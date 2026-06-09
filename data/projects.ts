@@ -3,6 +3,7 @@ export interface Project {
   description: string;
   tags: string[];
   status: "Shipped" | "Live" | "Client Work" | "Internal Tool" | "Ongoing";
+  url?: string;
 }
 
 export const projects: Project[] = [
@@ -12,6 +13,7 @@ export const projects: Project[] = [
       "Multi-tenant AI outbound sales automation platform with lead discovery, cold email, reply handling, and approval workflows",
     tags: ["Next.js", "FastAPI", "Supabase", "Anthropic", "Gmail OAuth"],
     status: "Shipped",
+    url: "https://www.venariq.com/",
   },
   {
     name: "Pharma-POS-AI",
@@ -61,6 +63,7 @@ export const projects: Project[] = [
       "AI-powered recruitment automation system for streamlining hiring pipelines",
     tags: ["FastAPI", "Supabase", "LLM Integration"],
     status: "Shipped",
+    url: "https://veloxarecruit.com/",
   },
   {
     name: "VeloxaHire",
