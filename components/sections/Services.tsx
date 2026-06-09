@@ -55,14 +55,25 @@ export default function Services() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
-                whileHover={{ y: -6 }}
-                className="surface-card group relative flex min-h-[340px] flex-col justify-between overflow-hidden rounded-[2rem] p-7 lg:p-9"
-                style={{ backgroundColor: style.bg, color: style.text }}
+                whileHover={{ y: -8, scale: 1.01 }}
+                className="surface-card group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 sm:min-h-[340px] sm:rounded-[2rem] sm:p-7 lg:p-9"
+                style={{
+                  backgroundColor: style.bg,
+                  color: style.text,
+                  boxShadow: "0 4px 24px rgba(0,0,0,0.12)",
+                }}
                 id={`service-${i}`}
               >
+                {/* hover glow */}
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-[2rem] opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{
+                    boxShadow: `0 0 60px 10px ${style.bg}55, inset 0 0 40px 0 ${style.bg}22`,
+                  }}
+                />
                 <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full border-[35px] border-current opacity-[0.08] transition-transform duration-700 group-hover:scale-125" />
                 <div className="flex items-center justify-between">
-                  <span className="text-[10px] font-mono tracking-[0.15em] opacity-45">
+                  <span className="text-xs font-mono tracking-[0.12em] opacity-60">
                     0{i + 1}
                   </span>
                   <div className="flex h-12 w-12 items-center justify-center rounded-full border border-current border-opacity-20 transition-all duration-300 group-hover:rotate-6 group-hover:scale-105">

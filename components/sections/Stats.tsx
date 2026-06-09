@@ -89,7 +89,7 @@ export default function Stats() {
               <div className={`font-[var(--font-syne)] text-5xl sm:text-6xl lg:text-7xl font-bold ${statTextColors[i]} leading-none`}>
                 <AnimatedNumber value={stat.value} />
               </div>
-              <p className={`max-w-[12rem] text-xs uppercase leading-5 tracking-[0.2em] ${statSubColors[i]} mt-6`}>
+              <p className={`max-w-[14rem] text-sm uppercase leading-6 tracking-[0.15em] ${statSubColors[i]} mt-6`}>
                 {stat.label}
               </p>
             </motion.div>

@@ -65,9 +65,9 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.18em;
   line-height: 1;
   text-transform: uppercase;
 }
@@ -259,9 +259,9 @@ button:focus-visible {
 .pill-btn-hero .pill-label {
   color: #0a0a0a;
   font-size: 16px;
-  font-weight: 600;
-  padding: 16px 32px;
-  letter-spacing: -0.01em;
+  font-weight: 700;
+  padding: 15px 26px;
+  letter-spacing: -0.02em;
 }
 .pill-btn-hero .pill-arrow {
   width: 50px;
@@ -272,8 +272,18 @@ button:focus-visible {
 .pill-btn-hero:hover {
   background-color: #ede9e3;
   border-color: #ede9e3;
-  transform: translateY(-1px);
-  box-shadow: 0 8px 32px rgba(247, 244, 239, 0.15);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(247, 244, 239, 0.18);
+}
+@media (min-width: 640px) {
+  .pill-btn-hero .pill-label {
+    font-size: 20px;
+    padding: 22px 40px;
+  }
+  .pill-btn-hero .pill-arrow {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 @media (min-width: 640px) {
@@ -335,6 +345,94 @@ button:focus-visible {
   background: rgba(236, 72, 153, 0.1);
   color: #db2777;
   border: 1px solid rgba(236, 72, 153, 0.15);
+}
+
+/* ============================================
+   CTA SHIMMER BORDER
+   ============================================ */
+@keyframes shimmer-rotate {
+  0%   { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cta-shimmer-border {
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#000, #000) padding-box,
+    conic-gradient(
+      from var(--angle),
+      transparent 65%,
+      rgba(231, 76, 60, 0.7) 75%,
+      rgba(99, 102, 241, 0.5) 85%,
+      transparent 95%
+    ) border-box;
+  animation: shimmer-rotate 6s linear infinite;
+}
+
+/* ============================================
+   AURORA HERO ORBS
+   ============================================ */
+@keyframes aurora-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(80px, -60px) scale(1.12); }
+  66%       { transform: translate(-50px, 40px) scale(0.9); }
+}
+
+@keyframes aurora-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  40%       { transform: translate(-90px, 70px) scale(1.15); }
+  70%       { transform: translate(60px, -40px) scale(0.92); }
+}
+
+@keyframes aurora-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(50px, 80px) scale(1.08); }
+}
+
+.aurora-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+.aurora-orb-1 {
+  width: 700px;
+  height: 700px;
+  top: -200px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(231, 76, 60, 0.22) 0%, rgba(155, 44, 44, 0.1) 50%, transparent 70%);
+  animation: aurora-drift-1 18s ease-in-out infinite, fadeInOrb 2s ease forwards;
+}
+
+.aurora-orb-2 {
+  width: 600px;
+  height: 600px;
+  top: -100px;
+  right: -50px;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(67, 56, 202, 0.08) 50%, transparent 70%);
+  animation: aurora-drift-2 22s ease-in-out infinite, fadeInOrb 2.5s ease forwards;
+}
+
+.aurora-orb-3 {
+  width: 500px;
+  height: 500px;
+  top: 30%;
+  left: 35%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, rgba(109, 40, 217, 0.06) 50%, transparent 70%);
+  animation: aurora-drift-3 26s ease-in-out infinite, fadeInOrb 3s ease forwards;
+}
+
+@keyframes fadeInOrb {
+  from { opacity: 0; }
+  to   { opacity: 1; }
 }
 
 /* ============================================

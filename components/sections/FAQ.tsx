@@ -36,18 +36,37 @@ export default function FAQ() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group border-b border-[#F7F4EF]/[0.07] transition-colors hover:border-[#F7F4EF]/20"
+                className={`group border-b transition-colors duration-300 ${
+                  openIndex === i
+                    ? "border-[#E74C3C]/25"
+                    : "border-[#F7F4EF]/[0.07] hover:border-[#F7F4EF]/20"
+                }`}
                 id={`faq-${i}`}
               >
                 <button
                   onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                  className="flex w-full items-start justify-between gap-6 py-7 text-left lg:py-9"
+                  className="flex w-full items-start justify-between gap-3 py-6 text-left sm:gap-6 sm:py-7 lg:py-9"
                   aria-expanded={openIndex === i}
                 >
-                  <span className="pr-4 font-[var(--font-syne)] text-lg font-semibold text-[#F7F4EF] transition-colors duration-300 group-hover:text-white sm:text-xl lg:text-2xl">
-                    {item.question}
-                  </span>
-                  <span className="flex-shrink-0 w-10 h-10 rounded-full border border-[#F7F4EF]/[0.1] flex items-center justify-center mt-0.5 text-[#F7F4EF]/30 group-hover:text-[#F7F4EF] group-hover:border-[#F7F4EF]/25 transition-all duration-300">
+                  <div className="flex min-w-0 items-start gap-3 sm:gap-5">
+                    <span className="mt-1 flex-shrink-0 font-mono text-xs text-[#F7F4EF]/40">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span
+                      className={`font-[var(--font-syne)] text-xl font-semibold transition-colors duration-300 sm:text-2xl lg:text-2xl ${
+                        openIndex === i ? "text-white" : "text-[#F7F4EF] group-hover:text-white"
+                      }`}
+                    >
+                      {item.question}
+                    </span>
+                  </div>
+                  <span
+                    className={`flex-shrink-0 mt-0.5 flex h-10 w-10 items-center justify-center rounded-full border transition-all duration-300 ${
+                      openIndex === i
+                        ? "border-[#E74C3C]/40 bg-[#E74C3C]/10 text-[#E74C3C]"
+                        : "border-[#F7F4EF]/[0.1] text-[#F7F4EF]/30 group-hover:border-[#F7F4EF]/25 group-hover:text-[#F7F4EF]"
+                    }`}
+                  >
                     {openIndex === i ? (
                       <Minus size={16} />
                     ) : (
@@ -62,10 +81,10 @@ export default function FAQ() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="text-base lg:text-lg text-[#F7F4EF]/65 leading-[1.8] pb-8 lg:pb-10 pr-16">
+                      <p className="pb-8 pl-7 pr-1 text-base leading-[1.8] text-[#F7F4EF]/70 sm:pl-9 sm:pr-16 sm:text-lg lg:pb-10">
                         {item.answer}
                       </p>
                     </motion.div>

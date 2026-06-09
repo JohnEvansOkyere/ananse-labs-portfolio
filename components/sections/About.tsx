@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { ArrowUpRight } from "lucide-react";
 
 const techStack = [
   { name: "Python", color: "#60A5FA" },
@@ -21,19 +22,23 @@ const techStack = [
 const advantages = [
   {
     title: "Direct collaboration",
-    text: "You work with the engineer shaping the architecture and shipping the product.",
+    text: "You work directly with the engineer shaping the architecture and shipping the product.",
+    accent: "#E74C3C",
   },
   {
     title: "Fast, visible progress",
     text: "Short delivery cycles, working software, and decisions made with evidence.",
+    accent: "#818cf8",
   },
   {
     title: "Production thinking",
-    text: "Security, reliability, deployment, and maintainability are designed in early.",
+    text: "Security, reliability, deployment, and maintainability are designed in from day one.",
+    accent: "#34d399",
   },
   {
     title: "Full ownership",
     text: "Your team receives the code, documentation, training, and a clean handoff.",
+    accent: "#fbbf24",
   },
 ];
 
@@ -68,22 +73,25 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-4"
           >
-            <div className="group relative h-full min-h-[520px] overflow-hidden rounded-[2rem] bg-black shadow-[0_24px_80px_rgba(0,0,0,0.14)]">
+            <div className="group relative h-full min-h-[440px] overflow-hidden rounded-[1.5rem] bg-black shadow-[0_32px_80px_rgba(0,0,0,0.22)] ring-1 ring-black/10 sm:min-h-[520px] sm:rounded-[2rem]">
               <Image
                 src="/John.jpg"
                 alt="John Evans Okyere — Founder of Ananse AI Labs"
                 fill
                 sizes="(max-width: 1024px) 100vw, 34vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                 priority
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-7 lg:p-9">
-                <p className="font-[var(--font-syne)] text-2xl font-bold text-white">
+              {/* light vignette — just bottom dark for text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
+              {/* subtle left accent stripe */}
+              <div className="absolute bottom-0 left-0 top-0 w-[3px] bg-[#E74C3C]" />
+              <div className="absolute inset-x-0 bottom-0 px-7 pb-7 pt-16 lg:px-9 lg:pb-9">
+                <p className="font-[var(--font-syne)] text-2xl font-bold text-white drop-shadow-lg">
                   John Evans Okyere
                 </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/65">
-                  Founder and AI/ML Engineer · Accra, Ghana
+                <p className="mt-1.5 text-sm leading-relaxed text-white/75">
+                  Founder &amp; AI/ML Engineer · Accra, Ghana
                 </p>
               </div>
             </div>
@@ -118,11 +126,11 @@ export default function About() {
             <div className="mt-10 grid grid-cols-2 gap-x-6 border-t border-black/10 pt-7">
               <div>
                 <p className="font-[var(--font-syne)] text-3xl font-bold text-black">10+</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-black/45">Systems shipped</p>
+                <p className="mt-1 text-sm uppercase tracking-[0.12em] text-black/55">Systems shipped</p>
               </div>
               <div>
                 <p className="font-[var(--font-syne)] text-3xl font-bold text-black">5+</p>
-                <p className="mt-1 text-xs uppercase tracking-[0.16em] text-black/45">Client markets</p>
+                <p className="mt-1 text-sm uppercase tracking-[0.12em] text-black/55">Client markets</p>
               </div>
             </div>
           </motion.div>
@@ -132,17 +140,17 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="flex flex-col rounded-[2rem] bg-[#101010] p-7 text-white sm:p-9 lg:col-span-3"
+              className="flex flex-col rounded-[1.5rem] bg-[#101010] p-5 text-white sm:rounded-[2rem] sm:p-9 lg:col-span-3"
             >
               <div className="flex items-end justify-between gap-4">
-                <p className="font-[var(--font-syne)] text-3xl font-bold tracking-[-0.03em]">
+                <p className="font-[var(--font-syne)] text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
                   Core stack
                 </p>
-                <span className="text-[10px] uppercase tracking-[0.2em] text-white/35">
+                <span className="text-xs uppercase tracking-[0.16em] text-white/50">
                   Production tools
                 </span>
               </div>
-              <div className="mt-8 grid flex-1 grid-cols-2 content-center gap-2.5">
+              <div className="mt-6 grid flex-1 grid-cols-2 content-center gap-2 sm:mt-8 sm:gap-2.5">
                 {techStack.map((tech, i) => (
                   <motion.span
                     key={tech.name}
@@ -151,7 +159,7 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: i * 0.035 }}
                     whileHover={{ x: 3 }}
-                    className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.045] px-3 py-3 text-sm font-semibold text-white/80 transition-colors hover:border-white/25 hover:bg-white/[0.08]"
+                    className="flex min-w-0 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07] px-3 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/30 hover:bg-white/[0.12] sm:gap-2.5 sm:px-3.5 sm:py-3"
                   >
                     <span
                       className="h-2 w-2 flex-shrink-0 rounded-full shadow-[0_0_12px_currentColor]"
@@ -164,23 +172,59 @@ export default function About() {
           </motion.div>
         </div>
 
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {advantages.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: i * 0.06 }}
-              className="rounded-2xl border border-black/10 bg-white/55 p-6"
+              transition={{ duration: 0.5, delay: i * 0.09 }}
+              whileHover={{ y: -8 }}
+              className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl bg-[#0d0d0d] p-5 transition-all duration-500 sm:min-h-[260px] sm:p-7"
+              style={{
+                boxShadow: "0 2px 24px rgba(0,0,0,0.18)",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px ${item.accent}30`;
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 24px rgba(0,0,0,0.18)";
+              }}
             >
-              <span className="text-[10px] font-mono tracking-[0.16em] text-black/35">
+              {/* oversized faded number in background */}
+              <span
+                className="pointer-events-none absolute -right-3 -top-4 font-[var(--font-syne)] text-[7rem] font-black leading-none opacity-[0.12] transition-opacity duration-500 group-hover:opacity-50"
+                style={{ color: item.accent }}
+              >
                 0{i + 1}
               </span>
-              <h3 className="mt-5 font-[var(--font-syne)] text-lg font-bold text-black">
-                {item.title}
-              </h3>
-              <p className="mt-2 text-sm leading-6 text-black/55">{item.text}</p>
+
+              {/* top accent dot */}
+              <div className="flex items-center gap-2.5">
+                <span
+                  className="h-2.5 w-2.5 rounded-full transition-all duration-300 group-hover:shadow-[0_0_14px_currentColor]"
+                  style={{ backgroundColor: item.accent, color: item.accent }}
+                />
+                <span className="font-mono text-xs tracking-[0.14em] text-white/25">
+                  0{i + 1}
+                </span>
+              </div>
+
+              <div>
+                <h3 className="font-[var(--font-syne)] text-xl font-bold leading-[1.2] text-white">
+                  {item.title}
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-white/50 transition-colors duration-300 group-hover:text-white/70">
+                  {item.text}
+                </p>
+              </div>
+
+              {/* bottom accent line grows on hover */}
+              <div
+                className="absolute bottom-0 left-0 h-[2px] w-0 rounded-full transition-all duration-500 group-hover:w-full"
+                style={{ backgroundColor: item.accent }}
+              />
             </motion.div>
           ))}
         </div>

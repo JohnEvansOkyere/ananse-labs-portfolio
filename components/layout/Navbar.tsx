@@ -55,7 +55,7 @@ export default function Navbar() {
                 key={link.label}
                 href={link.href}
                 id={`nav-${link.label.toLowerCase()}`}
-                className="rounded-full px-4 py-2 text-sm font-medium text-[#F7F4EF]/60 transition-all duration-300 hover:bg-white/[0.07] hover:text-[#F7F4EF]"
+                className="rounded-full px-4 py-2 text-base font-medium text-[#F7F4EF]/70 transition-all duration-300 hover:bg-white/[0.07] hover:text-[#F7F4EF]"
               >
                 {link.label}
               </a>
@@ -71,7 +71,7 @@ export default function Navbar() {
             <a
               href={siteConfig.calendly}
               id="nav-cta"
-              className="group inline-flex items-center gap-2 rounded-full bg-[#F7F4EF] px-5 py-2.5 text-sm font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_28px_rgba(247,244,239,0.14)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-[#F7F4EF] px-5 py-2.5 text-base font-semibold text-black transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_10px_28px_rgba(247,244,239,0.14)]"
             >
               <span>{siteConfig.ctaText}</span>
               <ArrowUpRight
@@ -83,7 +83,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-50 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-[#F7F4EF] transition-colors hover:bg-white/10 md:hidden"
+            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-[#F7F4EF] transition-colors hover:bg-white/10 md:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             id="nav-mobile-toggle"
@@ -100,7 +100,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black px-6"
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center overflow-y-auto bg-black px-4 py-24 sm:px-6"
           >
             <div className="flex w-full max-w-sm flex-col items-center gap-3">
               {navLinks.map((link, i) => (
@@ -111,7 +111,7 @@ export default function Navbar() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.1 }}
-                  className="w-full rounded-2xl border border-white/[0.07] px-6 py-4 text-center font-[var(--font-syne)] text-2xl font-bold text-[#F7F4EF] transition-colors hover:bg-white/[0.06]"
+                  className="w-full rounded-2xl border border-white/[0.07] px-5 py-3.5 text-center font-[var(--font-syne)] text-xl font-bold text-[#F7F4EF] transition-colors hover:bg-white/[0.06] sm:px-6 sm:py-4 sm:text-2xl"
                 >
                   {link.label}
                 </motion.a>

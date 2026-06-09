@@ -5,80 +5,209 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
-const statusColors: Record<string, string> = {
-  Shipped:       "text-emerald-400 bg-emerald-400/10 border-emerald-400/25",
-  Live:          "text-blue-400   bg-blue-400/10   border-blue-400/25",
-  "Client Work": "text-purple-400 bg-purple-400/10 border-purple-400/25",
-  "Internal Tool":"text-amber-400 bg-amber-400/10 border-amber-400/25",
-  Ongoing:       "text-pink-400   bg-pink-400/10   border-pink-400/25",
-};
-
-interface ProjectCfg {
-  bg: string;
-  accent: string;
-  image: string;
-  tagline: string;
-}
-
-const configs: Record<string, ProjectCfg> = {
+/* ── real photos, one per project ── */
+const meta: Record<string, { img: string; tagline: string; accent: string }> = {
   "VenariQ": {
-    bg: "#0b0a1e", accent: "#818cf8", image: "/projects/automation-system.png",
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&auto=format&fit=crop&q=80",
     tagline: "AI Sales Automation Platform",
+    accent: "#818cf8",
   },
   "Pharma-POS-AI": {
-    bg: "#04130a", accent: "#34d399", image: "/projects/health-operations.png",
+    img: "https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=900&auto=format&fit=crop&q=80",
     tagline: "Pharmacy POS + AI Manager",
+    accent: "#34d399",
   },
   "WhatsApp Food Ordering SaaS": {
-    bg: "#031408", accent: "#4ade80", image: "/projects/conversational-products.png",
+    img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=900&auto=format&fit=crop&q=80",
     tagline: "WhatsApp-Native Ordering Bot",
+    accent: "#4ade80",
   },
   "Kweli.AI Accounting Agent": {
-    bg: "#150e00", accent: "#fbbf24", image: "/projects/automation-system.png",
+    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=900&auto=format&fit=crop&q=80",
     tagline: "AI Accounting Intelligence",
+    accent: "#fbbf24",
   },
   "GlowSalon Telegram Bot": {
-    bg: "#0d0818", accent: "#a78bfa", image: "/projects/conversational-products.png",
+    img: "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&auto=format&fit=crop&q=80",
     tagline: "Telegram Booking Assistant",
+    accent: "#a78bfa",
   },
   "VenariQ Lead Gen": {
-    bg: "#020c1a", accent: "#60a5fa", image: "/projects/automation-system.png",
-    tagline: "Automated Lead Generation Pipeline",
+    img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop&q=80",
+    tagline: "Automated Lead Pipeline",
+    accent: "#60a5fa",
   },
   "Hermes Agent": {
-    bg: "#120700", accent: "#fb923c", image: "/projects/conversational-products.png",
-    tagline: "Internal AI Operations Agent",
+    img: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=900&auto=format&fit=crop&q=80",
+    tagline: "Internal AI Ops Agent",
+    accent: "#fb923c",
   },
   "VeloxaRecruit": {
-    bg: "#060818", accent: "#c084fc", image: "/projects/conversational-products.png",
+    img: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&auto=format&fit=crop&q=80",
     tagline: "AI Recruitment Automation",
+    accent: "#c084fc",
   },
   "VeloxaHire": {
-    bg: "#021210", accent: "#2dd4bf", image: "/projects/health-operations.png",
+    img: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&auto=format&fit=crop&q=80",
     tagline: "AI-Powered Job Matching",
+    accent: "#2dd4bf",
   },
   "AI Bootcamp / Masterclass": {
-    bg: "#160410", accent: "#f472b6", image: "/projects/conversational-products.png",
+    img: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1400&auto=format&fit=crop&q=80",
     tagline: "Hands-On AI Training Program",
+    accent: "#f472b6",
   },
 };
 
-const fallbackCfg: ProjectCfg = {
-  bg: "#0a0a0a", accent: "#6366f1", image: "/projects/automation-system.png",
-  tagline: "AI System",
+const statusColors: Record<string, string> = {
+  Shipped: "text-emerald-400 bg-emerald-400/10 border-emerald-400/30",
+  Live: "text-blue-400 bg-blue-400/10 border-blue-400/30",
+  "Client Work": "text-purple-400 bg-purple-400/10 border-purple-400/30",
+  "Internal Tool": "text-amber-400 bg-amber-400/10 border-amber-400/30",
+  Ongoing: "text-pink-400 bg-pink-400/10 border-pink-400/30",
 };
 
+const fallback = { img: "", tagline: "AI System", accent: "#6366f1" };
+
+/* ─────────────────────────────────────
+   Single card
+───────────────────────────────────── */
+function ProjectCard({
+  project,
+  index,
+  featured = false,
+}: {
+  project: (typeof projects)[0];
+  index: number;
+  featured?: boolean;
+}) {
+  const m = meta[project.name] ?? fallback;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.08 }}
+      className={`group relative overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] ${
+        featured ? "min-h-[520px]" : "min-h-[360px]"
+      }`}
+      id={`project-${index}`}
+    >
+      {/* full-bleed image */}
+      <div className="absolute inset-0">
+        <Image
+          src={m.img}
+          alt={project.name}
+          fill
+          sizes={featured ? "100vw" : "(max-width:768px) 100vw, 25vw"}
+          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
+          priority={index === 0}
+        />
+        {/* base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-black/10" />
+        {/* hover dim */}
+        <div className="absolute inset-0 bg-black/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      </div>
+
+      {/* accent left-border on hover */}
+      <div
+        className="absolute bottom-0 left-0 top-0 w-[3px] -translate-x-[3px] rounded-r-full opacity-0 transition-all duration-500 group-hover:translate-x-0 group-hover:opacity-100"
+        style={{ backgroundColor: m.accent }}
+      />
+
+      {/* top row */}
+      <div className="absolute left-5 right-5 top-5 flex items-start justify-between sm:left-6 sm:right-6 sm:top-6">
+        <span
+          className={`rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] backdrop-blur-md ${statusColors[project.status] ?? statusColors["Shipped"]}`}
+        >
+          {project.status}
+        </span>
+        <span className="font-mono text-xs text-white/40">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+      </div>
+
+      {/* bottom content */}
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6 lg:p-8">
+        {/* category chip */}
+        <div
+          className="mb-3 inline-flex items-center rounded-full px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.1em] backdrop-blur-sm"
+          style={{
+            backgroundColor: `${m.accent}18`,
+            color: m.accent,
+            border: `1px solid ${m.accent}40`,
+          }}
+        >
+          {m.tagline}
+        </div>
+
+        <h3
+          className={`font-[var(--font-syne)] font-bold leading-[1.1] tracking-[-0.025em] text-white ${
+            featured ? "text-3xl lg:text-5xl" : "text-lg lg:text-xl"
+          }`}
+        >
+          {project.name}
+        </h3>
+
+        {/* description — slides in on hover */}
+        <div className="overflow-hidden">
+          <p
+            className={`translate-y-3 text-sm leading-[1.75] text-white/75 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 ${
+              featured ? "mt-3 max-w-2xl" : "mt-2"
+            }`}
+          >
+            {project.description}
+          </p>
+        </div>
+
+        {/* tags + arrow — appear on hover */}
+        <div
+          className="mt-4 flex items-center justify-between border-t pt-4 opacity-0 transition-all duration-500 delay-75 group-hover:opacity-100"
+          style={{ borderColor: `${m.accent}25` }}
+        >
+          <div className="flex flex-wrap gap-x-3 gap-y-1">
+            {project.tags.slice(0, featured ? 4 : 2).map((tag) => (
+              <span key={tag} className="text-xs font-medium text-white/65">
+                {tag}
+              </span>
+            ))}
+            {project.tags.length > (featured ? 4 : 2) && (
+              <span className="text-xs text-white/40">
+                +{project.tags.length - (featured ? 4 : 2)}
+              </span>
+            )}
+          </div>
+          <div
+            className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
+            style={{ borderColor: `${m.accent}55`, color: m.accent }}
+          >
+            <ArrowUpRight size={14} />
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ─────────────────────────────────────
+   Work section
+───────────────────────────────────── */
 export default function Work() {
+  const [featured, ...rest] = projects;
+  const grid = rest.slice(0, 8);
+  const last = rest[8];
+
   return (
     <section className="relative bg-black section-space" id="work">
       <div className="site-container">
-
+        {/* header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mb-16 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-8 lg:mb-20"
+          className="mb-16 grid gap-6 lg:mb-20 lg:grid-cols-12 lg:items-end lg:gap-8"
         >
           <div className="lg:col-span-3">
             <span className="section-kicker text-[#F7F4EF]/35">Selected work</span>
@@ -92,105 +221,22 @@ export default function Work() {
           </p>
         </motion.div>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
-          {projects.map((project, i) => {
-            const cfg = configs[project.name] ?? fallbackCfg;
-            const featured = i === projects.length - 1;
+        {/* featured */}
+        <ProjectCard project={featured} index={0} featured />
 
-            return (
-              <motion.div
-                key={project.name}
-                initial={{ opacity: 0, y: 32 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.55, delay: (i % 3) * 0.08 }}
-                whileHover={{ y: -7 }}
-                className={`surface-card group relative overflow-hidden rounded-[1.75rem] border border-white/[0.08] ${
-                  featured ? "lg:col-span-3 lg:grid lg:min-h-[430px] lg:grid-cols-[1.35fr_1fr]" : "flex flex-col"
-                }`}
-                style={{ backgroundColor: cfg.bg }}
-                id={`project-${i}`}
-              >
-                <div className={`relative overflow-hidden ${featured ? "min-h-[300px] lg:min-h-full" : "aspect-[16/10]"}`}>
-                  <Image
-                    src={cfg.image}
-                    alt=""
-                    fill
-                    sizes={featured ? "(max-width: 1024px) 100vw, 65vw" : "(max-width: 768px) 100vw, 33vw"}
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.045]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                  <div
-                    className="absolute bottom-5 left-5 rounded-full border px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.13em] backdrop-blur-md"
-                    style={{
-                      borderColor: `${cfg.accent}55`,
-                      backgroundColor: `${cfg.bg}bb`,
-                      color: cfg.accent,
-                    }}
-                  >
-                    {cfg.tagline}
-                  </div>
-                </div>
-
-                <div className={`flex flex-1 flex-col p-7 ${featured ? "justify-center lg:p-12" : ""}`}>
-                  <div className="mb-5 flex items-center justify-between">
-                    <span
-                      className={`text-xs font-semibold px-3 py-1.5 rounded-full border ${statusColors[project.status] ?? statusColors["Shipped"]}`}
-                    >
-                      {project.status}
-                    </span>
-                    <span className="text-[11px] font-mono text-[#F7F4EF]/20">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-
-                  <h3 className={`mb-3 font-[var(--font-syne)] font-bold leading-[1.08] tracking-[-0.025em] text-[#F7F4EF] ${featured ? "text-3xl lg:text-5xl" : "text-2xl"}`}>
-                    {project.name}
-                  </h3>
-
-                  <p className={`mb-7 flex-1 leading-[1.8] text-[#F7F4EF]/50 transition-colors duration-300 group-hover:text-[#F7F4EF]/70 ${featured ? "max-w-xl text-base" : "text-sm"}`}>
-                    {project.description}
-                  </p>
-
-                  <div
-                    className="flex items-center justify-between gap-4 pt-5 border-t"
-                    style={{ borderColor: `${cfg.accent}20` }}
-                  >
-                    <div className="flex flex-wrap gap-x-3 gap-y-1.5">
-                      {project.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs font-medium text-[#F7F4EF]/30 group-hover:text-[#F7F4EF]/50 transition-colors duration-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                      {project.tags.length > 3 && (
-                        <span className="text-xs text-[#F7F4EF]/20">
-                          +{project.tags.length - 3}
-                        </span>
-                      )}
-                    </div>
-                    <div
-                      className="flex h-9 w-9 flex-shrink-0 translate-y-1 items-center justify-center rounded-full border opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
-                      style={{ borderColor: `${cfg.accent}50`, color: cfg.accent }}
-                    >
-                      <ArrowUpRight
-                        size={14}
-                        className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div
-                  className="absolute left-0 top-0 bottom-0 w-[3px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{ backgroundColor: cfg.accent }}
-                />
-              </motion.div>
-            );
-          })}
+        {/* 4-column grid */}
+        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {grid.map((p, i) => (
+            <ProjectCard key={p.name} project={p} index={i + 1} />
+          ))}
         </div>
+
+        {/* last full-width */}
+        {last && (
+          <div className="mt-4">
+            <ProjectCard project={last} index={9} featured />
+          </div>
+        )}
       </div>
     </section>
   );

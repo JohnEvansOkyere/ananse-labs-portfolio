@@ -43,7 +43,7 @@ export default function Footer() {
       >
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-8">
           <div className="text-center">
-            <p className="font-[var(--font-syne)] text-3xl font-bold leading-[1.2] text-white sm:text-4xl lg:text-5xl">
+            <p className="font-[var(--font-syne)] text-3xl font-bold leading-[1.15] text-white sm:text-4xl lg:text-5xl">
               Ready to build something real?
             </p>
             <p className="mt-3 text-lg text-white/70">
@@ -55,8 +55,8 @@ export default function Footer() {
             id="footer-cta"
             className="group inline-flex flex-shrink-0 items-center gap-0 overflow-hidden rounded-full border-2 border-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-white hover:shadow-[0_16px_40px_rgba(90,15,10,0.22)]"
           >
-            <span className="px-8 py-4 text-lg font-bold text-white">Schedule your call</span>
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white text-[#E74C3C]">
+            <span className="px-5 py-3.5 text-base font-bold text-white sm:px-8 sm:py-4 sm:text-lg">Schedule your call</span>
+            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#E74C3C] sm:h-14 sm:w-14">
               <ArrowUpRight size={20} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </span>
           </a>
@@ -115,15 +115,15 @@ export default function Footer() {
 
             <div className="flex items-center gap-5">
               <a href={siteConfig.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub" id="footer-github"
-                className="text-white/70 hover:text-white transition-colors duration-300">
+                className="flex h-11 w-11 items-center justify-center rounded-full text-white/70 transition-colors duration-300 hover:bg-white/10 hover:text-white">
                 <GithubIcon size={24} />
               </a>
               <a href={siteConfig.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" id="footer-linkedin"
-                className="text-white/70 hover:text-white transition-colors duration-300">
+                className="flex h-11 w-11 items-center justify-center rounded-full text-white/70 transition-colors duration-300 hover:bg-white/10 hover:text-white">
                 <LinkedinIcon size={24} />
               </a>
               <a href={siteConfig.twitter} target="_blank" rel="noopener noreferrer" aria-label="Twitter" id="footer-twitter"
-                className="text-white/70 hover:text-white transition-colors duration-300">
+                className="flex h-11 w-11 items-center justify-center rounded-full text-white/70 transition-colors duration-300 hover:bg-white/10 hover:text-white">
                 <XIcon size={24} />
               </a>
             </div>
