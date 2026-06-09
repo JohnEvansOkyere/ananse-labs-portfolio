@@ -15,6 +15,7 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://anaselabs.com"),
   title: "Ananse AI Labs — AI Automation Agency | Accra, Ghana",
   description:
     "We build intelligent systems, automation workflows, and AI-powered products for businesses across Africa and beyond. Founded by John Evans Okyere.",
