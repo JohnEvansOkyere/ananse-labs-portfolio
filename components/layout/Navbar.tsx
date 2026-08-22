@@ -34,7 +34,7 @@ export default function Navbar() {
           }`}
         >
           <motion.a
-            href="#hero"
+            href="/#hero"
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -48,7 +48,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 md:flex"
+            className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 lg:flex"
           >
             {navLinks.map((link) => (
               <a
@@ -66,7 +66,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="hidden md:block"
+            className="hidden lg:block"
           >
             <a
               href={siteConfig.calendly}
@@ -83,7 +83,7 @@ export default function Navbar() {
 
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-[#F7F4EF] transition-colors hover:bg-white/10 md:hidden"
+            className="relative z-50 flex h-11 w-11 items-center justify-center rounded-full border border-white/10 text-[#F7F4EF] transition-colors hover:bg-white/10 lg:hidden"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             id="nav-mobile-toggle"

@@ -13,11 +13,16 @@
   --font-display: var(--font-syne), system-ui, sans-serif;
 }
 
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Reset & Base
+   Must stay inside @layer base: unlayered rules outrank every layered rule
+   regardless of specificity, so an unlayered universal reset silently kills
+   every Tailwind padding and margin utility across the site. */
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 html {

@@ -2,11 +2,17 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { projects } from "@/data/projects";
 
 /* ── real photos, one per project ── */
 const meta: Record<string, { img: string; tagline: string; accent: string }> = {
+  "Fabrication Operations Platform": {
+    img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1600&auto=format&fit=crop&q=80",
+    tagline: "Manufacturing Ops Platform",
+    accent: "#5DE2C5",
+  },
   "VenariQ": {
     img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1400&auto=format&fit=crop&q=80",
     tagline: "AI Sales Automation Platform",
@@ -82,18 +88,10 @@ function ProjectCard({
   featured?: boolean;
 }) {
   const m = meta[project.name] ?? fallback;
+  const caseStudyHref = project.slug ? `/work/${project.slug}` : null;
 
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.6, delay: (index % 4) * 0.08 }}
-      className={`group relative overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] ${
-        featured ? "min-h-[520px]" : "min-h-[360px]"
-      }`}
-      id={`project-${index}`}
-    >
+  const card = (
+    <>
       {/* full-bleed image */}
       <div className="absolute inset-0">
         <Image
@@ -118,11 +116,18 @@ function ProjectCard({
 
       {/* top row */}
       <div className="absolute left-5 right-5 top-5 flex items-start justify-between sm:left-6 sm:right-6 sm:top-6">
-        <span
-          className={`rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] backdrop-blur-md ${statusColors[project.status] ?? statusColors["Shipped"]}`}
-        >
-          {project.status}
-        </span>
+        <div className="flex flex-wrap items-center gap-2">
+          <span
+            className={`rounded-full border px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] backdrop-blur-md ${statusColors[project.status] ?? statusColors["Shipped"]}`}
+          >
+            {project.status}
+          </span>
+          {caseStudyHref && (
+            <span className="rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-[0.12em] text-white backdrop-blur-md">
+              Case study
+            </span>
+          )}
+        </div>
         <span className="font-mono text-xs text-white/40">
           {String(index + 1).padStart(2, "0")}
         </span>
@@ -163,22 +168,32 @@ function ProjectCard({
 
         {/* tags + arrow — appear on hover */}
         <div
-          className="mt-4 flex items-center justify-between border-t pt-4 opacity-0 transition-all duration-500 delay-75 group-hover:opacity-100"
+          className="mt-4 flex items-center justify-between gap-3 border-t pt-4 opacity-0 transition-all duration-500 delay-75 group-hover:opacity-100"
           style={{ borderColor: `${m.accent}25` }}
         >
-          <div className="flex flex-wrap gap-x-3 gap-y-1">
-            {project.tags.slice(0, featured ? 4 : 2).map((tag) => (
-              <span key={tag} className="text-xs font-medium text-white/65">
-                {tag}
-              </span>
-            ))}
-            {project.tags.length > (featured ? 4 : 2) && (
-              <span className="text-xs text-white/40">
-                +{project.tags.length - (featured ? 4 : 2)}
-              </span>
-            )}
-          </div>
-          {project.url ? (
+          {caseStudyHref ? (
+            <span
+              className="text-xs font-bold uppercase tracking-[0.14em]"
+              style={{ color: m.accent }}
+            >
+              Read the case study
+            </span>
+          ) : (
+            <div className="flex flex-wrap gap-x-3 gap-y-1">
+              {project.tags.slice(0, featured ? 4 : 2).map((tag) => (
+                <span key={tag} className="text-xs font-medium text-white/65">
+                  {tag}
+                </span>
+              ))}
+              {project.tags.length > (featured ? 4 : 2) && (
+                <span className="text-xs text-white/40">
+                  +{project.tags.length - (featured ? 4 : 2)}
+                </span>
+              )}
+            </div>
+          )}
+
+          {project.url && !caseStudyHref ? (
             <a
               href={project.url}
               target="_blank"
@@ -191,7 +206,7 @@ function ProjectCard({
             </a>
           ) : (
             <div
-              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border"
+              className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border transition-transform duration-300 group-hover:scale-110"
               style={{ borderColor: `${m.accent}55`, color: m.accent }}
             >
               <ArrowUpRight size={14} />
@@ -199,6 +214,32 @@ function ProjectCard({
           )}
         </div>
       </div>
+    </>
+  );
+
+  const shell = `group relative block overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] ${
+    featured ? "min-h-[520px]" : "min-h-[360px]"
+  }`;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 36 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.08 }}
+      id={`project-${index}`}
+    >
+      {caseStudyHref ? (
+        <Link
+          href={caseStudyHref}
+          className={shell}
+          aria-label={`${project.name} — read the case study`}
+        >
+          {card}
+        </Link>
+      ) : (
+        <div className={shell}>{card}</div>
+      )}
     </motion.div>
   );
 }
@@ -208,8 +249,9 @@ function ProjectCard({
 ───────────────────────────────────── */
 export default function Work() {
   const [featured, ...rest] = projects;
+  /* Two clean rows of four, then whatever is left gets a wider treatment. */
   const grid = rest.slice(0, 8);
-  const last = rest[8];
+  const tail = rest.slice(8);
 
   return (
     <section className="relative bg-black section-space" id="work">
@@ -244,10 +286,21 @@ export default function Work() {
           ))}
         </div>
 
-        {/* last full-width */}
-        {last && (
-          <div className="mt-4">
-            <ProjectCard project={last} index={9} featured />
+        {/* remainder — never dropped, regardless of project count */}
+        {tail.length > 0 && (
+          <div
+            className={`mt-4 grid grid-cols-1 gap-4 ${
+              tail.length > 1 ? "md:grid-cols-2" : ""
+            }`}
+          >
+            {tail.map((p, i) => (
+              <ProjectCard
+                key={p.name}
+                project={p}
+                index={grid.length + 1 + i}
+                featured
+              />
+            ))}
           </div>
         )}
       </div>

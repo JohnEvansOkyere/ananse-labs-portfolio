@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { siteConfig, navLinks } from "@/config/site";
 
@@ -93,9 +94,9 @@ export default function Footer() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="flex items-center justify-center lg:col-span-6"
           >
-            <a href="#" className="font-[var(--font-syne)] text-3xl lg:text-4xl font-bold tracking-tight text-white">
+            <Link href="/" className="font-[var(--font-syne)] text-3xl lg:text-4xl font-bold tracking-tight text-white">
               ananse ai labs
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div

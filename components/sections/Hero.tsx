@@ -209,14 +209,18 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="my-8 flex flex-wrap items-center justify-center gap-2 sm:my-10 sm:gap-3"
+            className="mx-auto my-8 flex max-w-2xl flex-col items-center gap-2.5 sm:my-10"
           >
-            <span className="hidden h-px w-8 bg-[#E74C3C]/50 sm:block" />
-            <span className="text-center font-[var(--font-syne)] text-xs font-bold text-[#F7F4EF]/80 sm:text-sm">
-              &ldquo;Not because it is easy, but because it is hard.&rdquo;
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="hidden h-px w-8 flex-shrink-0 bg-[#E74C3C]/50 sm:block" />
+              <span className="max-w-[30rem] text-center font-[var(--font-syne)] text-xs font-bold leading-[1.65] text-[#F7F4EF]/80 sm:text-sm">
+                &ldquo;We choose to go to the Moon in this decade and do the
+                other things, not because they are easy, but because they are
+                hard.&rdquo;
+              </span>
+              <span className="hidden h-px w-8 flex-shrink-0 bg-[#E74C3C]/50 sm:block" />
+            </div>
             <span className="text-xs font-semibold text-[#F7F4EF]/50">— JFK</span>
-            <span className="hidden h-px w-8 bg-[#E74C3C]/50 sm:block" />
           </motion.div>
 
           {/* CTAs */}

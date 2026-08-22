@@ -6,6 +6,7 @@ import About from "@/components/sections/About";
 import Approach from "@/components/sections/Approach";
 import Services from "@/components/sections/Services";
 import Work from "@/components/sections/Work";
+import Mentorship from "@/components/sections/Mentorship";
 import Testimonials from "@/components/sections/Testimonials";
 import Stats from "@/components/sections/Stats";
 import CTA from "@/components/sections/CTA";
@@ -29,9 +30,10 @@ export default function Home() {
         </div>
         <Approach />
 
-        {/* BLACK: Services + Work */}
+        {/* BLACK: Services + Work + Mentorship */}
         <Services />
         <Work />
+        <Mentorship />
         <Testimonials />
 
         {/* CREAM: Stats + CTA */}

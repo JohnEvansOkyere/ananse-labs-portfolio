@@ -4,12 +4,14 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { stats } from "@/config/site";
 
-// Each stat gets a unique background color for visual variety
+// Each stat gets a unique background color for visual variety.
+// Indexed with a modulo so adding a stat can never yield an undefined class.
 const statColors = [
   "bg-[#F7F4EF]", // cream (default)
   "bg-[#E74C3C]", // warm red (accent)
   "bg-[#F7F4EF]", // cream
   "bg-[#F7F4EF]", // cream
+  "bg-[#101010]", // ink
 ];
 
 const statTextColors = [
@@ -17,6 +19,7 @@ const statTextColors = [
   "text-white",
   "text-black",
   "text-black",
+  "text-[#F7F4EF]",
 ];
 
 const statSubColors = [
@@ -24,6 +27,7 @@ const statSubColors = [
   "text-white/60",
   "text-black/40",
   "text-black/40",
+  "text-[#F7F4EF]/50",
 ];
 
 function AnimatedNumber({ value }: { value: string }) {
@@ -75,7 +79,7 @@ export default function Stats() {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -84,12 +88,12 @@ export default function Stats() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, scale: 1.01 }}
-              className={`surface-card flex min-h-[240px] flex-col items-center justify-center rounded-3xl border border-black/[0.06] p-8 text-center lg:p-10 ${statColors[i]}`}
+              className={`surface-card flex min-h-[240px] flex-col items-center justify-center rounded-3xl border border-black/[0.06] p-8 text-center lg:p-8 ${statColors[i % statColors.length]}`}
             >
-              <div className={`font-[var(--font-syne)] text-5xl sm:text-6xl lg:text-7xl font-bold ${statTextColors[i]} leading-none`}>
+              <div className={`font-[var(--font-syne)] text-5xl sm:text-6xl lg:text-[3.75rem] font-bold ${statTextColors[i % statTextColors.length]} leading-none`}>
                 <AnimatedNumber value={stat.value} />
               </div>
-              <p className={`max-w-[14rem] text-sm uppercase leading-6 tracking-[0.15em] ${statSubColors[i]} mt-6`}>
+              <p className={`max-w-[14rem] text-xs uppercase leading-6 tracking-[0.13em] ${statSubColors[i % statSubColors.length]} mt-6`}>
                 {stat.label}
               </p>
             </motion.div>

@@ -4,9 +4,19 @@ export interface Project {
   tags: string[];
   status: "Shipped" | "Live" | "Client Work" | "Internal Tool" | "Ongoing";
   url?: string;
+  /** Set when a long-form case study exists at /work/[slug]. */
+  slug?: string;
 }
 
 export const projects: Project[] = [
+  {
+    name: "Fabrication Operations Platform",
+    description:
+      "Single operations platform for a glass & aluminium fabricator — parametric configurator, extraction, GHS quoting, cutting optimization and a gated factory pipeline, built after a month embedded in their workflow",
+    tags: ["React", "FastAPI", "PostgreSQL", "react-konva", "WhatsApp API"],
+    status: "Client Work",
+    slug: "fabrication-ops-platform",
+  },
   {
     name: "VenariQ",
     description:

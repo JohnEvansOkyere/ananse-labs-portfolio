@@ -8,6 +8,7 @@ import {
   DatabaseZap,
   GraduationCap,
   Layers3,
+  UserRound,
   Workflow,
 } from "lucide-react";
 import { services } from "@/config/site";
@@ -19,6 +20,7 @@ const serviceStyles = [
   { bg: "#F4C95D", text: "#101010", muted: "rgba(16,16,16,.62)", Icon: BrainCircuit },
   { bg: "#5DE2C5", text: "#101010", muted: "rgba(16,16,16,.62)", Icon: GraduationCap },
   { bg: "#F7F4EF", text: "#101010", muted: "rgba(16,16,16,.58)", Icon: DatabaseZap },
+  { bg: "#101010", text: "#F7F4EF", muted: "rgba(247,244,239,.55)", Icon: UserRound },
 ];
 
 export default function Services() {
@@ -46,8 +48,11 @@ export default function Services() {
 
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:mt-16 lg:grid-cols-3">
             {services.map((service, i) => {
-              const style = serviceStyles[i];
+              const style = serviceStyles[i % serviceStyles.length];
               const Icon = style.Icon;
+              /* A trailing odd card fills the row instead of stranding it. */
+              const spansRow =
+                i === services.length - 1 && services.length % 3 === 1;
               return (
               <motion.div
                 key={service.title}
@@ -56,7 +61,11 @@ export default function Services() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.07 }}
                 whileHover={{ y: -8, scale: 1.01 }}
-                className="surface-card group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 sm:min-h-[340px] sm:rounded-[2rem] sm:p-7 lg:p-9"
+                className={`surface-card group relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[1.5rem] p-6 sm:min-h-[340px] sm:rounded-[2rem] sm:p-7 lg:p-9 ${
+                  spansRow
+                    ? "border border-[#F7F4EF]/10 sm:col-span-2 lg:col-span-3 lg:min-h-[300px]"
+                    : ""
+                }`}
                 style={{
                   backgroundColor: style.bg,
                   color: style.text,
@@ -81,12 +90,29 @@ export default function Services() {
                   </div>
                 </div>
 
-                <div className="relative">
-                  <Icon size={38} strokeWidth={1.6} className="mb-8 opacity-75" />
-                  <h3 className="mb-4 max-w-xs font-[var(--font-syne)] text-2xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-3xl">
-                    {service.title}
-                  </h3>
-                  <p className="max-w-sm text-sm leading-[1.75]" style={{ color: style.muted }}>
+                <div
+                  className={`relative ${
+                    spansRow
+                      ? "flex flex-col gap-6 lg:flex-row lg:items-end lg:gap-12"
+                      : ""
+                  }`}
+                >
+                  <div className={spansRow ? "lg:flex-1" : ""}>
+                    <Icon size={38} strokeWidth={1.6} className="mb-8 opacity-75" />
+                    <h3
+                      className={`font-[var(--font-syne)] text-2xl font-bold leading-[1.08] tracking-[-0.03em] lg:text-3xl ${
+                        spansRow ? "max-w-lg" : "mb-4 max-w-xs"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                  </div>
+                  <p
+                    className={`text-sm leading-[1.75] ${
+                      spansRow ? "lg:max-w-md lg:flex-1" : "max-w-sm"
+                    }`}
+                    style={{ color: style.muted }}
+                  >
                     {service.description}
                   </p>
                 </div>

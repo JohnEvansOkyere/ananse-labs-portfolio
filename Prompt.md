@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-Build a **production-ready personal + agency website** for **Evans (John Evans Okyere)** — Co-Founder & Technical Lead at Veloxa Technology Ltd, and founder of **Ananse AI Labs**, an AI automation agency based in **Accra, Ghana**.
+Build a **production-ready personal + agency website** for **Evans (John Evans Okyere)** — Founder & Technical Lead at Veloxa Technology Ltd, and founder of **Ananse AI Labs**, an AI automation agency based in **Accra, Ghana**.
 
 The site is **hybrid**: Evans IS the agency. There is no separation between the founder and the brand. The site should feel like a high-end creative technology studio with a strong personal voice — similar in structure and philosophy to [verteal.com](https://www.verteal.com), but adapted for an AI/ML engineer running an automation agency in Africa.
 

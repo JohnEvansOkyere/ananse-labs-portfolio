@@ -2,76 +2,104 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
+import { Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 
-const testimonials = [
+interface Testimonial {
+  quote: string;
+  name: string;
+  /** Omitted where the person's title isn't confirmed. */
+  role?: string;
+  company: string;
+  /** Real headshot, added only with the person's permission. */
+  avatar?: string;
+  /** Monogram tint used until a headshot exists. */
+  accent: string;
+}
+
+const testimonials: Testimonial[] = [
   {
-    quote:
-      "Working with Ananse AI Labs was genuinely different. They built our WhatsApp ordering bot in under 2 weeks — it now handles 300+ orders a day without a single person touching it.",
-    name: "Kwame Asante",
-    role: "Founder",
-    company: "FoodieGH",
-    avatar:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=faces",
-    rating: 5,
+    quote: "One thing I love about you is you get the job done.",
+    name: "Nana Agyeman",
+    company: "IT Support Ghana",
+    accent: "#E74C3C",
+  },
+  {
+    quote: "So what problem can't you solve?",
+    name: "Adeolu Deborah",
+    role: "Co-founder",
+    company: "Veloxa Technology Ltd",
+    accent: "#6C5CE7",
   },
   {
     quote:
-      "They didn't just write code — they understood our pharmacy operations first. The AI assistant they built reduced our stock reconciliation errors by over 80%. That's real money saved.",
-    name: "Dr. Abena Mensah",
-    role: "CEO",
-    company: "PharmaPlus",
-    avatar:
-      "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=120&h=120&fit=crop&crop=faces",
-    rating: 5,
+      "Evans made me understand AI and automation like it was never difficult.",
+    name: "Stanley Ametepe",
+    role: "Mentee",
+    company: "AI & Automation Mentorship",
+    accent: "#5DE2C5",
+  },
+  {
+    quote: "VenariQ helped me get more clients than all my past years.",
+    name: "Akua Doris",
+    company: "B2B Cleaning Service",
+    accent: "#F4C95D",
   },
   {
     quote:
-      "The AI bootcamp changed how our whole team thinks. Within 6 weeks we automated our entire client onboarding flow. I didn't expect that kind of velocity from a training engagement.",
-    name: "Emmanuel Tetteh",
-    role: "Operations Lead",
-    company: "TechBridge Ghana",
-    avatar:
-      "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=120&h=120&fit=crop&crop=faces",
-    rating: 5,
-  },
-  {
-    quote:
-      "Shipped on time, on budget, and the pipeline they built now generates 3× more qualified leads than what we had before. I've worked with three agencies — Ananse is the only one that shipped something I'd actually demo to investors.",
-    name: "Amara Jalloh",
-    role: "Marketing Director",
-    company: "VenariQ",
-    avatar:
-      "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=120&h=120&fit=crop&crop=faces",
-    rating: 5,
-  },
-  {
-    quote:
-      "We needed a recruitment automation system in 3 weeks. Most agencies laughed. Ananse scoped it, built it, and handed it over with documentation. It now screens 200 applicants a week automatically.",
-    name: "Nana Yaa Boateng",
-    role: "Head of HR",
+      "Through VeloxaHire, I got a job. God bless the team at Veloxa led by John.",
+    name: "Erica Agyeiwaa",
     company: "VeloxaHire",
-    avatar:
-      "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=120&h=120&fit=crop&crop=faces",
-    rating: 5,
+    accent: "#B8F500",
   },
 ];
 
-function StarRating({ count }: { count: number }) {
-  return (
-    <div className="flex items-center gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={14}
-          className={
-            i < count
-              ? "fill-[#E74C3C] text-[#E74C3C]"
-              : "fill-white/10 text-white/10"
-          }
+function initials(name: string) {
+  return name
+    .split(" ")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
+
+/** Headshot when we have one, monogram when we don't — never a stock stand-in. */
+function Avatar({
+  person,
+  size,
+}: {
+  person: Testimonial;
+  size: "lg" | "sm";
+}) {
+  const box =
+    size === "lg" ? "h-12 w-12 text-sm ring-2" : "h-8 w-8 text-[0.65rem] ring-1";
+
+  if (person.avatar) {
+    return (
+      <div
+        className={`relative flex-shrink-0 overflow-hidden rounded-full ring-white/10 ${box}`}
+      >
+        <Image
+          src={person.avatar}
+          alt={person.name}
+          fill
+          sizes={size === "lg" ? "48px" : "32px"}
+          className="object-cover"
         />
-      ))}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      className={`flex flex-shrink-0 items-center justify-center rounded-full font-bold tracking-[0.02em] ring-white/10 ${box}`}
+      style={{
+        backgroundColor: `${person.accent}1f`,
+        color: person.accent,
+      }}
+      aria-hidden="true"
+    >
+      {initials(person.name)}
     </div>
   );
 }
@@ -161,28 +189,19 @@ export default function Testimonials() {
                       &ldquo;{testimonials[active].quote}&rdquo;
                     </p>
                     <div className="mt-auto flex flex-wrap items-center gap-3 border-t border-white/[0.07] pt-4 sm:flex-nowrap sm:gap-4">
-                      <div className="relative h-12 w-12 flex-shrink-0 overflow-hidden rounded-full ring-2 ring-white/10">
-                        <Image
-                          src={testimonials[active].avatar}
-                          alt={testimonials[active].name}
-                          fill
-                          sizes="48px"
-                          className="object-cover"
-                        />
-                      </div>
+                      <Avatar person={testimonials[active]} size="lg" />
                       <div className="flex flex-1 flex-col gap-0.5">
                         <p className="text-sm font-semibold text-[#F7F4EF]">
                           {testimonials[active].name}
                         </p>
                         <p className="text-xs text-[#F7F4EF]/45">
-                          {testimonials[active].role} ·{" "}
+                          {testimonials[active].role && (
+                            <>{testimonials[active].role} · </>
+                          )}
                           <span className="text-[#F7F4EF]/60">
                             {testimonials[active].company}
                           </span>
                         </p>
-                      </div>
-                      <div className="w-full sm:w-auto">
-                        <StarRating count={testimonials[active].rating} />
                       </div>
                     </div>
                   </div>
@@ -237,7 +256,7 @@ export default function Testimonials() {
         </div>
 
         {/* Bottom preview strip — other testimonials */}
-        <div className="mt-10 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:mt-12 sm:gap-4 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:mt-12 sm:gap-4 lg:grid-cols-5">
           {testimonials.map((t, i) => (
             <motion.button
               key={t.name}
@@ -256,20 +275,12 @@ export default function Testimonials() {
               }`}
             >
               <div className="flex items-center gap-3">
-                <div className="relative h-8 w-8 flex-shrink-0 overflow-hidden rounded-full ring-1 ring-white/10">
-                  <Image
-                    src={t.avatar}
-                    alt={t.name}
-                    fill
-                    sizes="32px"
-                    className="object-cover"
-                  />
-                </div>
-                <div>
+                <Avatar person={t} size="sm" />
+                <div className="min-w-0">
                   <p className="text-sm font-semibold text-[#F7F4EF]/90">
                     {t.name.split(" ")[0]}
                   </p>
-                  <p className="text-xs text-[#F7F4EF]/55">{t.company}</p>
+                  <p className="truncate text-xs text-[#F7F4EF]/55">{t.company}</p>
                 </div>
               </div>
               <p className="mt-3 line-clamp-2 text-xs leading-relaxed text-[#F7F4EF]/55">

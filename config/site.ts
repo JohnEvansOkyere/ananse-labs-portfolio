@@ -24,11 +24,13 @@ export const siteConfig = {
   timeZone: "Accra, Ghana — ",
 };
 
+/* Root-relative so they also work from /work/[slug] case study pages. */
 export const navLinks = [
-  { label: "Work", href: "#work" },
-  { label: "Approach", href: "#approach" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Work", href: "/#work" },
+  { label: "Approach", href: "/#approach" },
+  { label: "Mentorship", href: "/#mentorship" },
+  { label: "About", href: "/#about" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const marqueeItems = [
@@ -51,6 +53,7 @@ export const stats = [
   { value: "5+", label: "Countries with clients" },
   { value: "3", label: "LLM providers integrated" },
   { value: "100+", label: "Professionals trained" },
+  { value: "5", label: "Mentees coached one-on-one" },
 ];
 
 export const services = [
@@ -90,7 +93,53 @@ export const services = [
       "Structured data workflows, model deployment, and monitoring for production ML systems",
     icon: "Database",
   },
+  {
+    title: "1-on-1 AI & Automation Mentorship",
+    description:
+      "Direct weekly coaching for engineers and operators building real AI and automation systems — not tutorials, your actual work",
+    icon: "UserRound",
+  },
 ];
+
+export const mentorship = {
+  kicker: "Mentorship",
+  headline: "I coach five people at a time. On purpose.",
+  intro:
+    "Alongside client work I run a one-on-one AI and automation mentorship. Not a course, not a cohort you get lost in — weekly sessions on the system you are actually building, with someone who ships this work for a living.",
+  seats: 5,
+  seatsLabel: "Mentees currently under mentorship",
+  format: "Weekly 1-on-1 · Ongoing · Rolling admission",
+  ctaText: "Apply for mentorship",
+  ctaNote:
+    "Seats are limited to five so every session is genuinely personal.",
+  pillars: [
+    {
+      title: "Your project, not a syllabus",
+      description:
+        "We work on what you are actually building. The curriculum is whatever is blocking you this week.",
+    },
+    {
+      title: "Real tools, production habits",
+      description:
+        "n8n, LLM APIs, FastAPI, agents and data pipelines — set up the way they are set up when a client depends on them.",
+    },
+    {
+      title: "Reviewed work, honest feedback",
+      description:
+        "You bring code and workflows. I review them properly and tell you what would break in production.",
+    },
+    {
+      title: "Positioning and pricing",
+      description:
+        "How to scope work, quote it, and talk to clients about AI without overpromising what it can do.",
+    },
+  ],
+  who: [
+    "Engineers moving into AI and automation work",
+    "Freelancers and consultants adding AI to their offer",
+    "Founders and operators automating their own business",
+  ],
+};
 
 export const processSteps = [
   {
@@ -139,6 +188,16 @@ export const faqItems = [
     question: "Do you offer AI training for teams?",
     answer:
       "Yes. We run hands-on AI bootcamps and masterclass sessions for business teams in Ghana and virtually. Reach out for a custom curriculum.",
+  },
+  {
+    question: "Do you mentor individuals one-on-one?",
+    answer:
+      "Yes — I run a one-on-one AI and automation mentorship, currently with five mentees. Sessions are weekly and built around the system you are actually working on rather than a fixed syllabus. Seats are deliberately capped at five, so availability depends on where the current mentees are in their work.",
+  },
+  {
+    question: "How do you approach a new client's workflow?",
+    answer:
+      "We learn it before we build for it. On our most recent manufacturing engagement that meant a month on site — following the work, collecting real documents instead of descriptions, and only then proposing a system. It is why the software fits the business instead of the other way round.",
   },
   {
     question: "Where are you based?",
