@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://anaselabs.com/sitemap.xml",
+    sitemap: "https://ananse-labs-portfolio.vercel.app/sitemap.xml",
   };
 }
