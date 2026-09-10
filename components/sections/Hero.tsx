@@ -204,30 +204,11 @@ export default function Hero() {
             business, not a template.
           </motion.p>
 
-          {/* JFK quote */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
-            className="mx-auto my-8 hidden max-w-2xl flex-col items-center gap-2.5 sm:my-10 sm:flex"
-          >
-            <div className="flex items-center gap-3">
-              <span className="hidden h-px w-8 flex-shrink-0 bg-[#E74C3C]/50 sm:block" />
-              <span className="max-w-[30rem] text-center font-[var(--font-syne)] text-xs font-bold leading-[1.65] text-[#F7F4EF]/80 sm:text-sm">
-                &ldquo;We choose to go to the Moon in this decade and do the
-                other things, not because they are easy, but because they are
-                hard.&rdquo;
-              </span>
-              <span className="hidden h-px w-8 flex-shrink-0 bg-[#E74C3C]/50 sm:block" />
-            </div>
-            <span className="text-xs font-semibold text-[#F7F4EF]/50">— JFK</span>
-          </motion.div>
-
           {/* CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.85 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
             className="mt-8 flex flex-col items-center gap-3 sm:mt-14 sm:flex-row sm:gap-4"
           >
             <a href="#work" id="hero-cta-work" className="pill-btn pill-btn-hero">
@@ -294,7 +275,7 @@ export default function Hero() {
           <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1 }}
+            transition={{ duration: 0.6, delay: 0.85 }}
             className="mt-8 hidden items-center gap-2 text-sm text-[#F7F4EF]/55 sm:flex"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />

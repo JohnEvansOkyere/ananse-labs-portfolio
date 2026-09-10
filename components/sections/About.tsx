@@ -56,11 +56,11 @@ export default function About() {
             <span className="section-kicker text-black/45">About me</span>
           </div>
           <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-black sm:text-5xl lg:col-span-6 lg:text-7xl">
-            Engineering useful AI, not demos.
+            The person behind the work.
           </h2>
           <p className="max-w-md text-base leading-7 text-black/55 sm:text-lg sm:leading-8 lg:col-span-3">
-            Founder-led product engineering from Accra, working with teams that
-            need practical systems they can operate and own.
+            John Evans Okyere, founder of Ananse AI Labs—building from Accra
+            for teams in Ghana and beyond.
           </p>
         </motion.div>
 
@@ -97,41 +97,28 @@ export default function About() {
           </motion.div>
 
           <motion.div
+            id="profile-quote"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="hidden flex-col justify-between rounded-[2rem] bg-[#E8E3DA] p-7 sm:flex sm:p-9 lg:col-span-5 lg:p-11"
+            className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[2rem] bg-[#E8E3DA] p-7 sm:min-h-[520px] sm:p-9 lg:col-span-5 lg:p-11"
           >
-            <div>
-              <p className="max-w-3xl font-[var(--font-syne)] text-2xl font-semibold leading-[1.35] tracking-[-0.025em] text-black sm:text-3xl">
-                I build AI products with the discipline of a software engineer
-                and the urgency of a product team.
+            <span className="pointer-events-none absolute -right-3 -top-14 font-[var(--font-syne)] text-[13rem] font-black leading-none text-black/[0.05] sm:text-[18rem]">
+              &ldquo;
+            </span>
+            <span className="relative text-xs font-semibold uppercase tracking-[0.16em] text-black/40">
+              A principle I keep close
+            </span>
+            <blockquote className="relative my-8">
+              <p className="font-[var(--font-syne)] text-2xl font-semibold leading-[1.35] tracking-[-0.025em] text-black sm:text-3xl lg:text-4xl">
+                &ldquo;We choose to go to the Moon in this decade and do the other
+                things, not because they are easy, but because they are hard.&rdquo;
               </p>
-              <div className="mt-8 space-y-5 text-base leading-8 text-black/65">
-                <p>
-                  Ananse AI Labs designs production systems across automation,
-                  conversational commerce, operations, recruitment, and data.
-                  The work spans Ghana, the US, and globally distributed teams.
-                </p>
-                <p className="hidden sm:block">
-                  Every engagement stays close to the business problem. We
-                  prototype quickly, test the risky assumptions, then engineer
-                  the version that can survive real users and real operations.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 gap-x-6 border-t border-black/10 pt-7">
-              <div>
-                <p className="font-[var(--font-syne)] text-3xl font-bold text-black">10+</p>
-                <p className="mt-1 text-sm uppercase tracking-[0.12em] text-black/55">Systems shipped</p>
-              </div>
-              <div>
-                <p className="font-[var(--font-syne)] text-3xl font-bold text-black">5+</p>
-                <p className="mt-1 text-sm uppercase tracking-[0.12em] text-black/55">Client markets</p>
-              </div>
-            </div>
+            </blockquote>
+            <cite className="relative border-t border-black/10 pt-5 text-sm font-semibold not-italic text-black/55 sm:text-base">
+              John F. Kennedy
+            </cite>
           </motion.div>
 
           <motion.div
