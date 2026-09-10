@@ -18,7 +18,7 @@ export default function Mentorship() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.7 }}
-          className="grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-8"
+          className="grid gap-4 sm:gap-6 lg:grid-cols-12 lg:items-end lg:gap-8"
         >
           <div className="lg:col-span-3">
             <span className="section-kicker text-[#F7F4EF]/35">
@@ -28,12 +28,39 @@ export default function Mentorship() {
           <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-[#F7F4EF] sm:text-5xl lg:col-span-6 lg:text-7xl">
             {mentorship.headline}
           </h2>
-          <p className="max-w-md text-base leading-8 text-[#F7F4EF]/50 sm:text-lg lg:col-span-3">
+          <p className="max-w-md text-base leading-7 text-[#F7F4EF]/50 sm:text-lg sm:leading-8 lg:col-span-3">
             {mentorship.format}
           </p>
         </motion.div>
 
-        <div className="mt-14 grid gap-4 lg:mt-20 lg:grid-cols-12">
+        <motion.div
+          {...fadeUp}
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="mt-9 rounded-[1.5rem] border border-white/10 bg-[#0a0a0a] p-6 lg:hidden"
+        >
+          <div className="flex items-center gap-4">
+            <span className="font-[var(--font-syne)] text-5xl font-bold leading-none text-[#E74C3C]">
+              {mentorship.seats}
+            </span>
+            <span className="max-w-[12rem] text-xs font-semibold uppercase leading-5 tracking-[0.12em] text-white/50">
+              personal mentorship seats
+            </span>
+          </div>
+          <p className="mt-5 text-base leading-7 text-white/65">
+            Weekly, practical coaching on the AI or automation system you are
+            actually building—not a generic course.
+          </p>
+          <a
+            href={siteConfig.calendly}
+            id="mentorship-mobile-cta"
+            className="mt-6 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-[#E74C3C] px-5 text-sm font-bold text-white"
+          >
+            {mentorship.ctaText}
+            <ArrowUpRight size={15} />
+          </a>
+        </motion.div>
+
+        <div className="mt-14 hidden gap-4 lg:mt-20 lg:grid lg:grid-cols-12">
           {/* seat counter */}
           <motion.div
             {...fadeUp}
@@ -96,7 +123,7 @@ export default function Mentorship() {
         <motion.div
           {...fadeUp}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-4 grid gap-8 rounded-[1.75rem] border border-[#F7F4EF]/[0.09] p-7 lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-10"
+          className="mt-4 hidden gap-8 rounded-[1.75rem] border border-[#F7F4EF]/[0.09] p-7 lg:grid lg:grid-cols-12 lg:items-center lg:gap-10 lg:p-10"
         >
           <div className="lg:col-span-7">
             <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#F7F4EF]/40">

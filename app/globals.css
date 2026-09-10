@@ -63,7 +63,7 @@ button:focus-visible {
 }
 
 .section-space {
-  padding-block: clamp(6rem, 10vw, 10rem);
+  padding-block: clamp(4rem, 10vw, 10rem);
 }
 
 .section-kicker {

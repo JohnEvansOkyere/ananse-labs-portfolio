@@ -40,7 +40,7 @@ export default function Footer() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="site-container border-b border-white/20 pb-16 pt-20 text-center lg:pb-20 lg:pt-24"
+        className="site-container hidden border-b border-white/20 pb-16 pt-20 text-center sm:block lg:pb-20 lg:pt-24"
       >
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-8">
           <div className="text-center">
@@ -64,15 +64,15 @@ export default function Footer() {
         </div>
       </motion.div>
 
-      <div className="site-container py-14 lg:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8">
+      <div className="site-container pb-28 pt-9 sm:py-14 lg:py-16">
+        <div className="grid grid-cols-1 gap-6 sm:gap-10 lg:grid-cols-12 lg:gap-8">
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex justify-center lg:col-span-3 lg:justify-start"
+            className="hidden justify-center lg:col-span-3 lg:flex lg:justify-start"
           >
             <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 lg:flex-col lg:justify-start lg:gap-4">
               {navLinks.map((link) => (
@@ -108,7 +108,7 @@ export default function Footer() {
           >
             <a
               href={`mailto:${siteConfig.email}`}
-              className="text-lg text-white hover:text-white/70 transition-colors duration-300"
+              className="text-sm text-white transition-colors duration-300 hover:text-white/70 sm:text-lg"
               id="footer-email-link"
             >
               {siteConfig.email}
@@ -136,7 +136,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="overflow-hidden pb-8 text-center lg:pb-12">
+      <div className="hidden overflow-hidden pb-8 text-center sm:block lg:pb-12">
         <p className="select-none whitespace-nowrap font-[var(--font-syne)] text-[clamp(5rem,19vw,17rem)] font-bold leading-none tracking-[-0.07em] text-white/[0.12]">
           ananse®
         </p>

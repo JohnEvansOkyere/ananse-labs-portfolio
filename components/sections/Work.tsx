@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
@@ -158,7 +159,7 @@ function ProjectCard({
         {/* description — slides in on hover */}
         <div className="overflow-hidden">
           <p
-            className={`translate-y-3 text-sm leading-[1.75] text-white/75 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100 ${
+            className={`translate-y-0 text-sm leading-[1.65] text-white/75 opacity-100 transition-all duration-500 sm:translate-y-3 sm:leading-[1.75] sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 ${
               featured ? "mt-3 max-w-2xl" : "mt-2"
             }`}
           >
@@ -168,7 +169,7 @@ function ProjectCard({
 
         {/* tags + arrow — appear on hover */}
         <div
-          className="mt-4 flex items-center justify-between gap-3 border-t pt-4 opacity-0 transition-all duration-500 delay-75 group-hover:opacity-100"
+          className="mt-3 flex items-center justify-between gap-3 border-t pt-3 opacity-100 transition-all duration-500 delay-75 sm:mt-4 sm:pt-4 sm:opacity-0 sm:group-hover:opacity-100"
           style={{ borderColor: `${m.accent}25` }}
         >
           {caseStudyHref ? (
@@ -217,8 +218,8 @@ function ProjectCard({
     </>
   );
 
-  const shell = `group relative block overflow-hidden rounded-[1.75rem] bg-[#0a0a0a] ${
-    featured ? "min-h-[520px]" : "min-h-[360px]"
+  const shell = `group relative block overflow-hidden rounded-[1.5rem] bg-[#0a0a0a] sm:rounded-[1.75rem] ${
+    featured ? "min-h-[420px] sm:min-h-[520px]" : "min-h-[320px] sm:min-h-[360px]"
   }`;
 
   return (
@@ -248,6 +249,7 @@ function ProjectCard({
    Work section
 ───────────────────────────────────── */
 export default function Work() {
+  const [showAllMobile, setShowAllMobile] = useState(false);
   const [featured, ...rest] = projects;
   /* Two clean rows of four, then whatever is left gets a wider treatment. */
   const grid = rest.slice(0, 8);
@@ -262,7 +264,7 @@ export default function Work() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mb-16 grid gap-6 lg:mb-20 lg:grid-cols-12 lg:items-end lg:gap-8"
+          className="mb-10 grid gap-4 sm:mb-16 sm:gap-6 lg:mb-20 lg:grid-cols-12 lg:items-end lg:gap-8"
         >
           <div className="lg:col-span-3">
             <span className="section-kicker text-[#F7F4EF]/35">Selected work</span>
@@ -270,7 +272,7 @@ export default function Work() {
           <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-[#F7F4EF] sm:text-5xl lg:col-span-6 lg:text-7xl">
             Products built for real operations.
           </h2>
-          <p className="max-w-md text-base leading-8 text-[#F7F4EF]/50 sm:text-lg lg:col-span-3">
+          <p className="max-w-md text-base leading-7 text-[#F7F4EF]/50 sm:text-lg sm:leading-8 lg:col-span-3">
             A cross-section of production platforms, internal tools, AI agents,
             and automation systems delivered across industries.
           </p>
@@ -280,29 +282,48 @@ export default function Work() {
         <ProjectCard project={featured} index={0} featured />
 
         {/* 4-column grid */}
-        <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="-mx-4 mt-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4">
           {grid.map((p, i) => (
-            <ProjectCard key={p.name} project={p} index={i + 1} />
+            <div
+              key={p.name}
+              className={`${!showAllMobile && i >= 2 ? "hidden sm:block" : "block"} min-w-[82vw] snap-center sm:min-w-0`}
+            >
+              <ProjectCard project={p} index={i + 1} />
+            </div>
           ))}
         </div>
+
+        <p className="mt-2 text-center text-xs font-medium uppercase tracking-[0.12em] text-white/35 sm:hidden">
+          Swipe for more work
+        </p>
 
         {/* remainder — never dropped, regardless of project count */}
         {tail.length > 0 && (
           <div
-            className={`mt-4 grid grid-cols-1 gap-4 ${
+            className={`mt-4 ${showAllMobile ? "grid" : "hidden sm:grid"} grid-cols-1 gap-4 ${
               tail.length > 1 ? "md:grid-cols-2" : ""
             }`}
           >
             {tail.map((p, i) => (
-              <ProjectCard
-                key={p.name}
-                project={p}
-                index={grid.length + 1 + i}
-                featured
-              />
+              <div key={p.name} className={!showAllMobile ? "hidden sm:block" : "block"}>
+                <ProjectCard
+                  project={p}
+                  index={grid.length + 1 + i}
+                  featured
+                />
+              </div>
             ))}
           </div>
         )}
+
+        <button
+          type="button"
+          onClick={() => setShowAllMobile((current) => !current)}
+          aria-expanded={showAllMobile}
+          className="mt-6 flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/15 bg-white/[0.04] px-5 text-sm font-bold text-white transition-colors hover:bg-white/[0.08] sm:hidden"
+        >
+          {showAllMobile ? "Show fewer projects" : `Explore ${rest.length - 2} more projects`}
+        </button>
       </div>
     </section>
   );

@@ -11,39 +11,27 @@ import Testimonials from "@/components/sections/Testimonials";
 import Stats from "@/components/sections/Stats";
 import CTA from "@/components/sections/CTA";
 import FAQ from "@/components/sections/FAQ";
+import MobileContactBar from "@/components/layout/MobileContactBar";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      <main>
-        {/* BLACK: Hero + Marquee */}
-        <Hero />
-        <Marquee />
-
-        {/* CREAM: About + Approach */}
-        <About />
-        <div className="section-cream">
-          <div className="site-container">
-            <div className="h-[1px] bg-black/[0.06]" />
-          </div>
-        </div>
-        <Approach />
-
-        {/* BLACK: Services + Work + Mentorship */}
-        <Services />
-        <Work />
-        <Mentorship />
-        <Testimonials />
-
-        {/* CREAM: Stats + CTA */}
-        <Stats />
-        <CTA />
-
-        {/* DARK: FAQ */}
-        <FAQ />
+      <main className="flex flex-col">
+        <div className="order-1"><Hero /></div>
+        <div className="order-2"><Marquee /></div>
+        <div className="order-3 lg:order-9"><Stats /></div>
+        <div className="order-4 lg:order-6"><Work /></div>
+        <div className="order-5 lg:order-8"><Testimonials /></div>
+        <div className="order-6 lg:order-5"><Services /></div>
+        <div className="order-7 lg:order-4"><Approach /></div>
+        <div className="order-8 lg:order-3"><About /></div>
+        <div className="order-9 lg:order-7"><Mentorship /></div>
+        <div className="order-10"><CTA /></div>
+        <div className="order-11"><FAQ /></div>
       </main>
       <Footer />
+      <MobileContactBar />
     </>
   );
 }

@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
 
 const techStack = [
   { name: "Python", color: "#60A5FA" },
@@ -51,7 +50,7 @@ export default function About() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mb-14 grid gap-6 border-b border-black/10 pb-12 lg:grid-cols-12 lg:items-end lg:gap-8 lg:pb-16"
+          className="mb-9 grid gap-4 border-b border-black/10 pb-9 sm:mb-14 sm:gap-6 sm:pb-12 lg:grid-cols-12 lg:items-end lg:gap-8 lg:pb-16"
         >
           <div className="lg:col-span-3">
             <span className="section-kicker text-black/45">About me</span>
@@ -59,7 +58,7 @@ export default function About() {
           <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-black sm:text-5xl lg:col-span-6 lg:text-7xl">
             Engineering useful AI, not demos.
           </h2>
-          <p className="max-w-md text-base leading-8 text-black/55 sm:text-lg lg:col-span-3">
+          <p className="max-w-md text-base leading-7 text-black/55 sm:text-lg sm:leading-8 lg:col-span-3">
             Founder-led product engineering from Accra, working with teams that
             need practical systems they can operate and own.
           </p>
@@ -73,7 +72,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="lg:col-span-4"
           >
-            <div className="group relative h-full min-h-[440px] overflow-hidden rounded-[1.5rem] bg-black shadow-[0_32px_80px_rgba(0,0,0,0.22)] ring-1 ring-black/10 sm:min-h-[520px] sm:rounded-[2rem]">
+            <div className="group relative h-full min-h-[340px] overflow-hidden rounded-[1.5rem] bg-black shadow-[0_32px_80px_rgba(0,0,0,0.22)] ring-1 ring-black/10 sm:min-h-[520px] sm:rounded-[2rem]">
               <Image
                 src="/John.jpg"
                 alt="John Evans Okyere — Founder of Ananse AI Labs"
@@ -102,7 +101,7 @@ export default function About() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="flex flex-col justify-between rounded-[2rem] bg-[#E8E3DA] p-7 sm:p-9 lg:col-span-5 lg:p-11"
+            className="hidden flex-col justify-between rounded-[2rem] bg-[#E8E3DA] p-7 sm:flex sm:p-9 lg:col-span-5 lg:p-11"
           >
             <div>
               <p className="max-w-3xl font-[var(--font-syne)] text-2xl font-semibold leading-[1.35] tracking-[-0.025em] text-black sm:text-3xl">
@@ -115,7 +114,7 @@ export default function About() {
                   conversational commerce, operations, recruitment, and data.
                   The work spans Ghana, the US, and globally distributed teams.
                 </p>
-                <p>
+                <p className="hidden sm:block">
                   Every engagement stays close to the business problem. We
                   prototype quickly, test the risky assumptions, then engineer
                   the version that can survive real users and real operations.
@@ -140,7 +139,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="flex flex-col rounded-[1.5rem] bg-[#101010] p-5 text-white sm:rounded-[2rem] sm:p-9 lg:col-span-3"
+              className="hidden flex-col rounded-[1.5rem] bg-[#101010] p-5 text-white sm:flex sm:rounded-[2rem] sm:p-9 lg:col-span-3"
             >
               <div className="flex items-end justify-between gap-4">
                 <p className="font-[var(--font-syne)] text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
@@ -159,7 +158,7 @@ export default function About() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.35, delay: i * 0.035 }}
                     whileHover={{ x: 3 }}
-                    className="flex min-w-0 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07] px-3 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/30 hover:bg-white/[0.12] sm:gap-2.5 sm:px-3.5 sm:py-3"
+                    className={`${i >= 6 ? "hidden sm:flex" : "flex"} min-w-0 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07] px-3 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/30 hover:bg-white/[0.12] sm:gap-2.5 sm:px-3.5 sm:py-3`}
                   >
                     <span
                       className="h-2 w-2 flex-shrink-0 rounded-full shadow-[0_0_12px_currentColor]"
@@ -172,7 +171,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-4">
           {advantages.map((item, i) => (
             <motion.div
               key={item.title}
@@ -181,7 +180,7 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.09 }}
               whileHover={{ y: -8 }}
-              className="group relative flex min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl bg-[#0d0d0d] p-5 transition-all duration-500 sm:min-h-[260px] sm:p-7"
+              className={`${i >= 2 ? "hidden sm:flex" : "flex"} group relative min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl bg-[#0d0d0d] p-4 transition-all duration-500 sm:min-h-[260px] sm:p-7`}
               style={{
                 boxShadow: "0 2px 24px rgba(0,0,0,0.18)",
               }}
@@ -212,10 +211,10 @@ export default function About() {
               </div>
 
               <div>
-                <h3 className="font-[var(--font-syne)] text-xl font-bold leading-[1.2] text-white">
+                <h3 className="font-[var(--font-syne)] text-base font-bold leading-[1.2] text-white sm:text-xl">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-7 text-white/50 transition-colors duration-300 group-hover:text-white/70">
+                <p className="mt-3 text-xs leading-5 text-white/50 transition-colors duration-300 group-hover:text-white/70 sm:text-sm sm:leading-7">
                   {item.text}
                 </p>
               </div>

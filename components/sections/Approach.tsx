@@ -14,14 +14,27 @@ const stepMeta = [
 
 export default function Approach() {
   const [active, setActive] = useState(0);
-  const [hovered, setHovered] = useState<number | null>(null);
   const [ctaOpen, setCtaOpen] = useState(false);
   const ctaRef = useRef<HTMLDivElement>(null);
   const n = processSteps.length;
 
   useEffect(() => {
-    const id = setInterval(() => setActive((p) => (p + 1) % n), 2800);
-    return () => clearInterval(id);
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    let id: ReturnType<typeof setInterval> | undefined;
+
+    const syncTimer = () => {
+      if (id) clearInterval(id);
+      id = desktop.matches
+        ? setInterval(() => setActive((p) => (p + 1) % n), 2800)
+        : undefined;
+    };
+
+    syncTimer();
+    desktop.addEventListener("change", syncTimer);
+    return () => {
+      if (id) clearInterval(id);
+      desktop.removeEventListener("change", syncTimer);
+    };
   }, [n]);
 
   useEffect(() => {
@@ -45,13 +58,13 @@ export default function Approach() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-20 max-w-4xl text-center"
+          className="mx-auto mb-10 max-w-4xl text-center sm:mb-20"
         >
           <span className="section-kicker justify-center text-black/40">Our process</span>
           <h2 className="mt-6 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-black sm:text-5xl lg:text-6xl">
             Clear from the first call to the final handoff.
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-black/55 sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-black/55 sm:mt-6 sm:text-lg sm:leading-8">
             We work as an extension of your team, with short feedback loops,
             visible progress, and ownership from architecture to deployment.
           </p>
@@ -59,6 +72,29 @@ export default function Approach() {
 
         {/* ── PIPELINE ── */}
         <div className="mt-4">
+
+          {/* On phones, one decision at a time is faster than four tall cards. */}
+          <div className="mb-5 grid grid-cols-4 gap-2 lg:hidden" aria-label="Process steps">
+            {processSteps.map((step, i) => {
+              const isActive = active === i;
+              return (
+                <button
+                  key={step.number}
+                  type="button"
+                  onClick={() => setActive(i)}
+                  aria-pressed={isActive}
+                  aria-label={`${step.number}: ${step.title}`}
+                  className={`flex min-h-11 items-center justify-center rounded-xl border font-mono text-xs font-bold transition-colors ${
+                    isActive
+                      ? "border-black bg-black text-white"
+                      : "border-black/10 bg-black/[0.03] text-black/45"
+                  }`}
+                >
+                  {step.number}
+                </button>
+              );
+            })}
+          </div>
 
           {/* Desktop pipeline connector row — sits above cards */}
           <div className="relative mb-0 hidden lg:grid lg:grid-cols-4 lg:gap-4">
@@ -138,7 +174,9 @@ export default function Approach() {
                   transition={{ duration: 0.55, delay: i * 0.1 }}
                   animate={{ y: isActive ? -8 : 0 }}
                   onClick={() => setActive(i)}
-                  className="group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0d0d0d] p-6 transition-all duration-500 sm:p-8 lg:rounded-t-none lg:rounded-b-3xl"
+                  className={`group relative cursor-pointer overflow-hidden rounded-3xl bg-[#0d0d0d] p-6 transition-all duration-500 sm:p-8 lg:block lg:rounded-t-none lg:rounded-b-3xl ${
+                    isActive ? "block" : "hidden"
+                  }`}
                   style={{
                     boxShadow: isActive
                       ? `0 28px 64px rgba(0,0,0,0.35), 0 0 0 1px ${color}45`
@@ -230,7 +268,7 @@ export default function Approach() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-14 flex justify-center lg:mt-16"
+          className="mt-8 flex justify-center sm:mt-14 lg:mt-16"
         >
           <div ref={ctaRef} className="relative">
             <button

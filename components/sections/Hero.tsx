@@ -149,7 +149,7 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen flex-col overflow-hidden section-black" id="hero">
+    <section className="relative flex min-h-[100svh] flex-col overflow-hidden section-black sm:min-h-screen" id="hero">
       {/* Aurora gradient orbs */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="aurora-orb aurora-orb-1" />
@@ -159,7 +159,7 @@ export default function Hero() {
 
       <AsciiGrid />
 
-      <div className="site-container relative z-10 flex flex-1 items-center justify-center pb-16 pt-32 sm:pt-36">
+      <div className="site-container relative z-10 flex flex-1 items-center justify-center pb-10 pt-24 sm:pb-16 sm:pt-36">
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
 
           {/* Founder badge */}
@@ -167,7 +167,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.2 }}
-            className="mb-7 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
+            className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-2 backdrop-blur-sm sm:mb-7 sm:px-4"
           >
             <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_14px_rgba(52,211,153,0.7)]" />
             <span className="text-xs font-semibold uppercase tracking-[0.14em] text-[#F7F4EF]/70 sm:hidden">
@@ -183,7 +183,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.3 }}
-            className="max-w-5xl text-balance font-[var(--font-syne)] text-[clamp(2.6rem,11vw,6.75rem)] font-bold leading-[0.97] tracking-[-0.055em] text-[#F7F4EF]"
+            className="max-w-5xl text-balance font-[var(--font-syne)] text-[clamp(2.15rem,10.5vw,6.75rem)] font-bold leading-[1] tracking-[-0.055em] text-[#F7F4EF] sm:leading-[0.97]"
           >
             You talk for 15 minutes.
             <br />
@@ -197,7 +197,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, delay: 0.55 }}
-            className="mt-7 max-w-2xl text-balance text-base leading-8 text-[#F7F4EF]/60 sm:text-lg"
+            className="mt-5 max-w-2xl text-balance text-[0.95rem] leading-7 text-[#F7F4EF]/60 sm:mt-7 sm:text-lg sm:leading-8"
           >
             Tell us your problem. We come back with a working solution —
             automations, AI agents, and full-stack systems built for your
@@ -209,7 +209,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="mx-auto my-8 flex max-w-2xl flex-col items-center gap-2.5 sm:my-10"
+            className="mx-auto my-8 hidden max-w-2xl flex-col items-center gap-2.5 sm:my-10 sm:flex"
           >
             <div className="flex items-center gap-3">
               <span className="hidden h-px w-8 flex-shrink-0 bg-[#E74C3C]/50 sm:block" />
@@ -228,7 +228,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.85 }}
-            className="mt-10 flex flex-col items-center gap-4 sm:mt-14 sm:flex-row"
+            className="mt-8 flex flex-col items-center gap-3 sm:mt-14 sm:flex-row sm:gap-4"
           >
             <a href="#work" id="hero-cta-work" className="pill-btn pill-btn-hero">
               <span className="pill-label">See the work</span>
@@ -295,7 +295,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="mt-8 flex items-center gap-2 text-sm text-[#F7F4EF]/55"
+            className="mt-8 hidden items-center gap-2 text-sm text-[#F7F4EF]/55 sm:flex"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.6)]" />
             {siteConfig.ctaAvailability}
@@ -305,7 +305,7 @@ export default function Hero() {
 
       <motion.div
         initial={false}
-        className="site-container relative z-10 grid grid-cols-1 items-end border-t border-white/[0.07] py-5 text-center min-[380px]:grid-cols-2 min-[380px]:text-left lg:grid-cols-3 lg:py-6"
+        className="site-container relative z-10 hidden grid-cols-1 items-end border-t border-white/[0.07] py-5 text-center sm:grid min-[380px]:grid-cols-2 min-[380px]:text-left lg:grid-cols-3 lg:py-6"
       >
         <p className="text-xs tracking-wide text-[#F7F4EF]/50 sm:text-sm">
           Founder-led AI studio · Ananse AI Labs

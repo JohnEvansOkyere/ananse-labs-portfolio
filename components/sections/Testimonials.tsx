@@ -148,7 +148,7 @@ export default function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.7 }}
-          className="mb-16 grid gap-6 lg:grid-cols-12 lg:items-end lg:gap-8"
+          className="mb-10 grid gap-4 sm:mb-16 sm:gap-6 lg:grid-cols-12 lg:items-end lg:gap-8"
         >
           <div className="lg:col-span-3">
             <span className="section-kicker text-[#F7F4EF]/35">
@@ -158,7 +158,7 @@ export default function Testimonials() {
           <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-[#F7F4EF] sm:text-5xl lg:col-span-6 lg:text-7xl">
             Real results, real clients.
           </h2>
-          <p className="max-w-md text-base leading-8 text-[#F7F4EF]/50 sm:text-lg lg:col-span-3">
+          <p className="max-w-md text-base leading-7 text-[#F7F4EF]/50 sm:text-lg sm:leading-8 lg:col-span-3">
             Don&apos;t take our word for it — here&apos;s what the people who hired us have to say.
           </p>
         </motion.div>
@@ -211,7 +211,7 @@ export default function Testimonials() {
           </div>
 
           {/* Controls */}
-          <div className="mt-8 flex items-center justify-between">
+          <div className="mt-5 flex items-center justify-between sm:mt-8">
             {/* Dots */}
             <div className="flex items-center gap-2">
               {testimonials.map((_, i) => (
@@ -256,7 +256,7 @@ export default function Testimonials() {
         </div>
 
         {/* Bottom preview strip — other testimonials */}
-        <div className="mt-10 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:mt-12 sm:gap-4 lg:grid-cols-5">
+        <div className="mt-10 hidden grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:mt-12 sm:grid sm:gap-4 lg:grid-cols-5">
           {testimonials.map((t, i) => (
             <motion.button
               key={t.name}

@@ -69,17 +69,17 @@ export default function Stats() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.65 }}
-          className="mx-auto mb-14 max-w-3xl text-center lg:mb-16"
+          className="mx-auto mb-9 max-w-3xl text-center sm:mb-14 lg:mb-16"
         >
           <span className="section-kicker justify-center text-black/40">
             Track record
           </span>
-          <h2 className="mt-6 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-black sm:text-5xl">
-            Experience you can measure.
+          <h2 className="mt-5 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-black sm:mt-6 sm:text-5xl">
+            Proof, at a glance.
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="-mx-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-5">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -88,12 +88,12 @@ export default function Stats() {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
               whileHover={{ y: -6, scale: 1.01 }}
-              className={`surface-card flex min-h-[240px] flex-col items-center justify-center rounded-3xl border border-black/[0.06] p-8 text-center lg:p-8 ${statColors[i % statColors.length]}`}
+              className={`surface-card flex min-h-[165px] min-w-[72vw] snap-center flex-col items-center justify-center rounded-3xl border border-black/[0.06] p-6 text-center sm:min-h-[240px] sm:min-w-0 sm:p-8 lg:p-8 ${statColors[i % statColors.length]}`}
             >
               <div className={`font-[var(--font-syne)] text-5xl sm:text-6xl lg:text-[3.75rem] font-bold ${statTextColors[i % statTextColors.length]} leading-none`}>
                 <AnimatedNumber value={stat.value} />
               </div>
-              <p className={`max-w-[14rem] text-xs uppercase leading-6 tracking-[0.13em] ${statSubColors[i % statSubColors.length]} mt-6`}>
+              <p className={`mt-4 max-w-[14rem] text-xs uppercase leading-5 tracking-[0.13em] sm:mt-6 sm:leading-6 ${statSubColors[i % statSubColors.length]}`}>
                 {stat.label}
               </p>
             </motion.div>

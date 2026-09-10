@@ -7,21 +7,22 @@ import { faqItems, siteConfig } from "@/config/site";
 
 export default function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [showAllMobile, setShowAllMobile] = useState(false);
 
   return (
-    <section className="relative bg-[#0a0a0a] section-space">
+    <section className="relative bg-[#0a0a0a] section-space" id="faq">
       <div className="site-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7 }}
-          className="mx-auto mb-14 max-w-3xl text-center lg:mb-16"
+          className="mx-auto mb-9 max-w-3xl text-center sm:mb-14 lg:mb-16"
         >
           <span className="section-kicker justify-center text-[#F7F4EF]/40">
             FAQ
           </span>
-          <h2 className="mt-6 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-[#F7F4EF] sm:text-5xl lg:text-6xl">
+          <h2 className="mt-5 text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.08] tracking-[-0.04em] text-[#F7F4EF] sm:mt-6 sm:text-5xl lg:text-6xl">
             Questions, answered clearly.
           </h2>
         </motion.div>
@@ -37,6 +38,8 @@ export default function FAQ() {
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
                 className={`group border-b transition-colors duration-300 ${
+                  !showAllMobile && i >= 3 ? "hidden sm:block" : "block"
+                } ${
                   openIndex === i
                     ? "border-[#E74C3C]/25"
                     : "border-[#F7F4EF]/[0.07] hover:border-[#F7F4EF]/20"
@@ -93,12 +96,21 @@ export default function FAQ() {
               </motion.div>
             ))}
 
+            <button
+              type="button"
+              onClick={() => setShowAllMobile((current) => !current)}
+              aria-expanded={showAllMobile}
+              className="mt-6 flex min-h-12 w-full items-center justify-center rounded-2xl border border-white/15 bg-white/[0.04] px-5 text-sm font-bold text-white transition-colors hover:bg-white/[0.08] sm:hidden"
+            >
+              {showAllMobile ? "Show fewer questions" : `See ${faqItems.length - 3} more answers`}
+            </button>
+
             <motion.p
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
-                  className="mt-12 text-center text-base text-[#F7F4EF]/50"
+                  className="mt-8 text-center text-base text-[#F7F4EF]/50 sm:mt-12"
             >
               Still have questions?{" "}
               <a
