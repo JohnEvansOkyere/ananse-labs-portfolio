@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/data/projects";
+import { getCaseStudy } from "@/data/case-studies";
 
 const rowGrid =
   "grid grid-cols-[1fr_auto] items-start gap-x-4 border-t border-white/10 py-6 sm:grid-cols-[2.5rem_1fr_7rem_1.25rem] sm:gap-x-6 sm:py-7";
@@ -23,7 +24,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
           >
             {project.name}
           </h3>
-          {project.slug && (
+          {project.slug && getCaseStudy(project.slug) && (
             <span className="rounded-full bg-[#E74C3C]/15 px-2.5 py-1 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-[#E74C3C]">
               Case study
             </span>
@@ -60,7 +61,7 @@ function ProjectRow({ project, index }: { project: Project; index: number }) {
       <Link
         href={`/work/${project.slug}`}
         className={`group ${rowGrid}`}
-        aria-label={`${project.name} — read the case study`}
+        aria-label={`${project.name} — open walkthrough`}
       >
         {body}
       </Link>

@@ -61,6 +61,14 @@ export default function Hero() {
               Get in touch
             </a>
           </div>
+
+          <a
+            href="#play"
+            className="rise mt-6 inline-block text-sm text-[#F7F4EF]/50 transition-colors hover:text-[#F7F4EF]/80"
+            style={{ animationDelay: "0.36s" }}
+          >
+            Psst… there&apos;s a game on this page 🎮
+          </a>
         </div>
 
         <div

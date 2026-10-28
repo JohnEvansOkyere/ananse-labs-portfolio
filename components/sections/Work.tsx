@@ -19,7 +19,7 @@ export default function Work() {
             id="work-explore"
             className="pill-btn pill-btn-light mt-8 w-full justify-between sm:w-auto sm:justify-start"
           >
-            <span className="pill-label">Explore all {projects.length} projects</span>
+            <span className="pill-label">Explore more work</span>
             <span className="pill-arrow">
               <ArrowUpRight size={16} />
             </span>

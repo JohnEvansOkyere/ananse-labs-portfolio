@@ -122,6 +122,16 @@ button:focus-visible {
   animation: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
+/* A sticker that can't sit still. */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(-2deg) scale(1.06); }
+}
+
+.wiggle {
+  animation: wiggle 2.6s ease-in-out infinite;
+}
+
 /* ============================================
    PILL BUTTON
    ============================================ */

@@ -13,15 +13,15 @@ export const siteConfig = {
   location: "Accra, Ghana",
   status: "Open to new projects",
   headline: "I build custom software and AI systems for real businesses.",
-  intro: `I'm John Evans Okyere, a software & AI engineer in Accra, Ghana. ${title}.`,
+  intro: `Hi, I'm John Evans Okyere — a software & AI engineer in Accra, Ghana. ${title}.`,
 };
 
 /* Root-relative so they also work from /work/[slug] case study pages. */
 export const navLinks = [
   { label: "Work", href: "/#work" },
-  { label: "Play", href: "/#play" },
   { label: "Mentorship", href: "/#mentorship" },
   { label: "About", href: "/#about" },
+  { label: "Play", href: "/#play" },
 ];
 
 /* Shown in the Contact section — add a line here to add a link. */
@@ -85,12 +85,15 @@ export const quote = {
 /* The game lives in public/chale-city — a static copy of the standalone game. */
 export const game = {
   title: "Chale City",
+  eyebrow: "Before you go…",
+  heading: "I made you something fun.",
   description:
-    "A free driving and story game set in Accra. You're Kwesi, home for his father's funeral — drive taxis, trotros and okadas to raise the money and keep Papa's land.",
+    "Hop in a taxi and cruise through Accra as Kwesi, home for Papa's funeral with a family to look after. It takes ten seconds to start — fair warning, you might stay a while 😄",
+  badge: "Free · no download",
   hint: "WASD or arrows to drive · E to get in and out · C to change view",
   hintMobile: "Tip: turn your phone sideways for the best view.",
   href: "/chale-city/index.html",
-  ctaText: "Play now",
+  ctaText: "Let's play",
 };
 
 export const mentorship = {

@@ -12,7 +12,7 @@ export default function Contact() {
 
         <div className="lg:col-span-9">
           <p className="text-lg text-[#F7F4EF]/60">
-            Got a project or a question? Email me.
+            Got a project, an idea, or just want to say hi? Email me.
           </p>
           <a
             href={`mailto:${siteConfig.email}`}

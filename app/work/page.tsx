@@ -4,12 +4,12 @@ import { ArrowLeft } from "lucide-react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ProjectList from "@/components/work/ProjectList";
-import { projects } from "@/data/projects";
+import { alsoBuilt, projects } from "@/data/projects";
 
 export const metadata: Metadata = {
   title: "Work",
   description:
-    "Client projects, products and tools built by John Evans Okyere — custom software, AI automation and agents.",
+    "Systems built by John Evans Okyere — custom software, AI automation and agents. Open any project for a walkthrough.",
   alternates: { canonical: "/work" },
 };
 
@@ -35,12 +35,36 @@ export default function WorkPage() {
               Work
             </h1>
             <p className="mt-4 text-lg text-[#F7F4EF]/60">
-              Client projects, products and tools.
+              Things I&apos;ve built for real people. Tap any one for a
+              walkthrough.
             </p>
 
             <div className="mt-12 sm:mt-16">
               <ProjectList projects={projects} />
             </div>
+
+            <p className="mt-8 text-sm leading-7 text-[#F7F4EF]/50">
+              <span className="font-semibold text-[#F7F4EF]/80">
+                Also built:
+              </span>{" "}
+              {alsoBuilt.map((item, i) => (
+                <span key={item.name}>
+                  {i > 0 && " · "}
+                  {item.url ? (
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline decoration-white/20 underline-offset-4 transition-colors hover:text-[#F7F4EF] hover:decoration-[#E74C3C]"
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    item.name
+                  )}
+                </span>
+              ))}
+            </p>
           </div>
         </section>
       </main>
