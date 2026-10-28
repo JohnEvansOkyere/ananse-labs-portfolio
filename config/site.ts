@@ -42,7 +42,7 @@ export const whatIDo = [
   {
     title: "Custom software",
     description:
-      "Web platforms and internal tools built around how your business actually works — e-commerce, POS, school, church and operations systems.",
+      "Web platforms and internal tools built around how your business actually works — e-commerce, POS, school, church, HR and operations systems.",
   },
   {
     title: "Automation & AI agents",

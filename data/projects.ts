@@ -19,21 +19,23 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Fabrication Operations Platform",
+    name: "VeloxaRecruit",
     description:
-      "One platform for a glass & aluminium fabricator — configurator, quoting, cutting optimization and factory pipeline.",
-    tags: ["React", "FastAPI", "PostgreSQL", "react-konva", "WhatsApp API"],
-    status: "Client Work",
-    slug: "fabrication-ops-platform",
+      "Post a job, let AI screen the CVs and run first interviews, then hire from a ranked shortlist.",
+    tags: ["Next.js", "FastAPI", "Supabase", "AI screening"],
+    status: "Shipped",
+    url: "https://veloxarecruit.com",
+    slug: "veloxarecruit",
     featured: true,
   },
   {
-    name: "School Management SaaS",
+    name: "VeloxaHire",
     description:
-      "A whole school in one app — registers, report cards, fees, and an AI study buddy for the kids.",
-    tags: ["React", "NestJS", "PostgreSQL", "Supabase", "Claude"],
-    status: "In Build",
-    slug: "school-management",
+      "A job board that knows you — it finds jobs, recommends the good ones and drafts your CV for each.",
+    tags: ["Next.js", "FastAPI", "Supabase", "AI matching"],
+    status: "Shipped",
+    url: "https://veloxahire.org",
+    slug: "veloxahire",
     featured: true,
   },
   {
@@ -44,6 +46,31 @@ export const projects: Project[] = [
     status: "Shipped",
     url: "https://www.venariq.com/",
     slug: "venariq",
+    featured: true,
+  },
+  {
+    name: "VeloxaHR",
+    description:
+      "People records, leave, onboarding, performance and payroll — so you always know who needs to act next.",
+    tags: ["Next.js", "FastAPI", "Supabase", "PostgreSQL"],
+    status: "In Build",
+    slug: "veloxahr",
+  },
+  {
+    name: "Fabrication Operations Platform",
+    description:
+      "One platform for a glass & aluminium fabricator — configurator, quoting, cutting optimization and factory pipeline.",
+    tags: ["React", "FastAPI", "PostgreSQL", "react-konva", "WhatsApp API"],
+    status: "Client Work",
+    slug: "fabrication-ops-platform",
+  },
+  {
+    name: "School Management SaaS",
+    description:
+      "A whole school in one app — registers, report cards, fees, and an AI study buddy for the kids.",
+    tags: ["React", "NestJS", "PostgreSQL", "Supabase", "Claude"],
+    status: "In Build",
+    slug: "school-management",
   },
   {
     name: "WhatsApp Food Ordering",
@@ -91,8 +118,6 @@ export const projects: Project[] = [
 export const alsoBuilt: { name: string; url?: string }[] = [
   { name: "Pharma-POS-AI" },
   { name: "Kweli.AI accounting agent" },
-  { name: "VeloxaRecruit", url: "https://veloxarecruit.com/" },
-  { name: "VeloxaHire" },
   { name: "Hermes agent" },
   { name: "AI bootcamps" },
 ];

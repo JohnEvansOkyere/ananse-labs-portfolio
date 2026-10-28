@@ -353,6 +353,150 @@ export const projectDetails: ProjectDetail[] = [
       "Can be hosted free",
     ],
   },
+  {
+    slug: "veloxarecruit",
+    kicker: "Product · Hiring",
+    tagline:
+      "Post a job, let AI screen the CVs and run first interviews, then hire from a ranked shortlist.",
+    summary: [
+      "Hiring usually drowns in CVs. VeloxaRecruit gives recruiters one place to post jobs, screen applicants with AI, interview them and move the best through a pipeline — and candidates can apply without creating an account first.",
+      "The AI does the legwork. People make the hiring decisions.",
+    ],
+    role: "Product, backend, frontend and AI",
+    walkthrough: [
+      {
+        title: "Post a job",
+        body: "Create the role with the details that matter and publish it. It gets its own page, and it also shows up on VeloxaHire so job seekers find it there too.",
+      },
+      {
+        title: "Candidates apply — no sign-up wall",
+        body: "Applying doesn't need an account. Candidates just apply; registering comes afterwards and is entirely optional. Fewer hurdles means more applicants.",
+      },
+      {
+        title: "AI screens the CVs",
+        body: "Every CV is screened against the job and ranked, with a report that shows why — so you're not trusting a mystery score.",
+      },
+      {
+        title: "AI interviews the shortlist",
+        body: "Shortlisted candidates can take a conversational AI interview, and you get an interview report to read instead of sitting through every call.",
+      },
+      {
+        title: "Move people through the pipeline",
+        body: "Track every candidate through your hiring stages, schedule on the calendar and work on it together with your team.",
+      },
+      {
+        title: "You make the call",
+        body: "Rankings and evidence sit side by side, and the hiring decision stays with you.",
+      },
+    ],
+    highlights: [
+      "Applicants never hit a login wall",
+      "CV screening reports that explain the ranking",
+      "Conversational AI interviews with reports",
+      "Hiring pipeline, calendar and team collaboration",
+      "Jobs are shared with VeloxaHire automatically",
+      "Every AI call is logged with its cost",
+      "Each company's data stays separate (row-level security)",
+      "Works on its own or alongside VeloxaHR",
+    ],
+  },
+  {
+    slug: "veloxahire",
+    kicker: "Product · Job seekers",
+    tagline:
+      "A job board that knows you — it finds jobs, recommends the good ones and drafts your CV for each.",
+    summary: [
+      "VeloxaHire is the job-seeker side of the Veloxa family: discovery, AI recommendations and CV help for people looking for work. It collects jobs from around a dozen public sources, plus the roles recruiters post on VeloxaRecruit.",
+      "Browse first, sign up when you're ready.",
+    ],
+    role: "Product, backend, frontend and AI",
+    walkthrough: [
+      {
+        title: "Browse jobs — no sign-up",
+        body: "Open the site and start looking. There are Ghana jobs, remote jobs and plain old search, all ready before you create an account.",
+      },
+      {
+        title: "Build your profile",
+        body: "Sign up, verify your phone once with an SMS code, and tell it about your skills, experience and what you want next. Upload your CV and it's turned into structured data automatically.",
+      },
+      {
+        title: "Get recommendations",
+        body: "AI matches your profile against the jobs and refreshes your recommendations every 12 hours, so good ones find you.",
+      },
+      {
+        title: "Tailor your CV for a job",
+        body: "Pick a job and get a private, editable CV draft written for it. It's yours to tweak — nothing is sent anywhere.",
+      },
+      {
+        title: "Save and apply",
+        body: "Save jobs, apply, and keep track of where each application stands. Roles posted on VeloxaRecruit link straight back to apply.",
+      },
+      {
+        title: "Come back for more",
+        body: "New jobs are collected every day and duplicates are weeded out, so there's always something fresh.",
+      },
+    ],
+    highlights: [
+      "Jobs from around a dozen public sources, plus recruiter-posted roles",
+      "Ghana and remote job sections",
+      "AI recommendations refreshed every 12 hours",
+      "Private, editable CV drafts for each job",
+      "Saved jobs and application tracking",
+      "Phone-verified accounts",
+    ],
+  },
+  {
+    slug: "veloxahr",
+    kicker: "Product · HR",
+    tagline:
+      "People records, leave, onboarding, performance and payroll — so you always know who needs to act next.",
+    summary: [
+      "VeloxaHR is for the HR officer or business owner whose staff records, leave requests and follow-ups are scattered across files and chats. Bring your people in, set up one workflow, name who owns it, and get a real task done.",
+      "AI drafts and suggests. People make every employment decision.",
+    ],
+    role: "Product, architecture and full-stack build",
+    status:
+      "In build. Employee records, leave, onboarding and performance are working. Payroll — Ghana PAYE and pension calculations, approvals and payslips — is in active build and review.",
+    walkthrough: [
+      {
+        title: "Bring your people in",
+        body: "Import your employee records. Everyone gets one record with a timeline of what's happened, so the answer to \"what's going on with this person?\" is one click away.",
+      },
+      {
+        title: "Set up how your company works",
+        body: "Add your branches or sites and say who approves what. Your process lives in settings, not in code.",
+      },
+      {
+        title: "Onboard new hires",
+        body: "Checklists, tasks and document collection for every new starter — plus an optional AI 30/60/90-day plan drafted from the hire's own gaps. The manager and the employee review it before it goes live.",
+      },
+      {
+        title: "Handle leave properly",
+        body: "Leave types, balances and a calendar with Ghana's public holidays. Each branch has a named approver with their own approval inbox, and balances update on their own.",
+      },
+      {
+        title: "Grow your people",
+        body: "Goals, check-ins, appraisal cycles and 360 feedback. AI can draft coaching notes from observations a manager has reviewed — and a human always approves the appraisal.",
+      },
+      {
+        title: "Run payroll",
+        body: "From earnings to net pay: pension, PAYE and deductions, with a step-by-step trace that explains every number. The person who prepares payroll can't be the one who approves it, and payslips come out the other end.",
+      },
+      {
+        title: "Employees see their own side",
+        body: "A self-service space where staff view their own record, request corrections and see why an AI suggestion was made — and nothing about anyone else.",
+      },
+    ],
+    highlights: [
+      "Built for Ghana: PAYE, pension and public holidays",
+      "Payroll with separated duties — preparer, approver and finance review",
+      "A calculation trace behind every payroll number",
+      "AI drafts show their evidence and their human reviewer",
+      "Employees only ever see their own data",
+      "A hire from VeloxaRecruit can flow straight into an employee record",
+      "Each company's data stays separate (row-level security)",
+    ],
+  },
 ];
 
 export function getProjectDetail(slug: string): ProjectDetail | undefined {

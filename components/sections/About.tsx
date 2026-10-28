@@ -9,8 +9,8 @@ export default function About() {
         <div className="lg:col-span-9">
           <p className="max-w-2xl text-balance font-[var(--font-syne)] text-2xl font-semibold leading-[1.4] tracking-[-0.025em] text-[#F7F4EF] sm:text-3xl">
             I build custom software and AI systems for real businesses —
-            e-commerce, pharmacy POS, school and church management, factory
-            operations, sales automation — and teach others to do the same.
+            e-commerce, pharmacy POS, school and church management, hiring
+            and HR, factory operations, sales automation — and teach others to do the same.
           </p>
           <p className="mt-6 max-w-2xl text-base leading-7 text-[#F7F4EF]/60">
             I like to get close to the work first. On a recent client project I
