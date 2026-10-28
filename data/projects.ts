@@ -54,6 +54,7 @@ export const projects: Project[] = [
       "People records, leave, onboarding, performance and payroll — so you always know who needs to act next.",
     tags: ["Next.js", "FastAPI", "Supabase", "PostgreSQL"],
     status: "In Build",
+    url: "https://veloxarecruit.com",
     slug: "veloxahr",
   },
   {
