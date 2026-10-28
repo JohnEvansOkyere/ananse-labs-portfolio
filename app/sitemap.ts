@@ -20,42 +20,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 1,
     },
-    ...caseStudyRoutes,
     {
-      url: `${BASE_URL}/#work`,
+      url: `${BASE_URL}/work`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
-    {
-      url: `${BASE_URL}/#services`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/#mentorship`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/#about`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/#approach`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.7,
-    },
-    {
-      url: `${BASE_URL}/#contact`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
+    ...caseStudyRoutes,
   ];
 }

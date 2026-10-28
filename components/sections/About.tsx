@@ -1,218 +1,33 @@
-"use client";
-
-import { motion } from "framer-motion";
-import Image from "next/image";
-
-const techStack = [
-  { name: "Python", color: "#60A5FA" },
-  { name: "TypeScript", color: "#818CF8" },
-  { name: "FastAPI", color: "#2DD4BF" },
-  { name: "Next.js", color: "#F7F4EF" },
-  { name: "React", color: "#22D3EE" },
-  { name: "Supabase", color: "#34D399" },
-  { name: "PostgreSQL", color: "#38BDF8" },
-  { name: "n8n", color: "#FB923C" },
-  { name: "Docker", color: "#93C5FD" },
-  { name: "Claude", color: "#C4B5FD" },
-  { name: "GPT", color: "#6EE7B7" },
-  { name: "Gemini", color: "#F9A8D4" },
-];
-
-const advantages = [
-  {
-    title: "Direct collaboration",
-    text: "You work directly with the engineer shaping the architecture and shipping the product.",
-    accent: "#E74C3C",
-  },
-  {
-    title: "Fast, visible progress",
-    text: "Short delivery cycles, working software, and decisions made with evidence.",
-    accent: "#818cf8",
-  },
-  {
-    title: "Production thinking",
-    text: "Security, reliability, deployment, and maintainability are designed in from day one.",
-    accent: "#34d399",
-  },
-  {
-    title: "Full ownership",
-    text: "Your team receives the code, documentation, training, and a clean handoff.",
-    accent: "#fbbf24",
-  },
-];
+import { quote } from "@/config/site";
 
 export default function About() {
   return (
-    <section className="relative bg-[#F7F4EF] section-space" id="about">
-      <div className="site-container">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.7 }}
-          className="mb-9 grid gap-4 border-b border-black/10 pb-9 sm:mb-14 sm:gap-6 sm:pb-12 lg:grid-cols-12 lg:items-end lg:gap-8 lg:pb-16"
-        >
-          <div className="lg:col-span-3">
-            <span className="section-kicker text-black/45">About me</span>
-          </div>
-          <h2 className="text-balance font-[var(--font-syne)] text-4xl font-bold leading-[1.02] tracking-[-0.045em] text-black sm:text-5xl lg:col-span-6 lg:text-7xl">
-            The person behind the work.
-          </h2>
-          <p className="max-w-md text-base leading-7 text-black/55 sm:text-lg sm:leading-8 lg:col-span-3">
-            John Evans Okyere, founder of Ananse AI Labs—building from Accra
-            for teams in Ghana and beyond.
+    <section className="border-t border-white/10 py-16 sm:py-24" id="about">
+      <div className="site-container grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <h2 className="section-kicker self-start text-[#F7F4EF]/50 lg:col-span-3">About</h2>
+
+        <div className="lg:col-span-9">
+          <p className="max-w-2xl text-balance font-[var(--font-syne)] text-2xl font-semibold leading-[1.4] tracking-[-0.025em] text-[#F7F4EF] sm:text-3xl">
+            I build custom software and AI systems for real businesses —
+            e-commerce, pharmacy POS, school and church management, factory
+            operations, sales automation — and teach others to do the same.
           </p>
-        </motion.div>
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[#F7F4EF]/60">
+            I like to get close to the work first. On a recent client project I
+            spent a month on site before writing any code.
+          </p>
 
-        <div className="mt-10 grid grid-cols-1 gap-5 lg:mt-16 lg:grid-cols-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8 }}
-            className="lg:col-span-4"
-          >
-            <div className="group relative h-full min-h-[340px] overflow-hidden rounded-[1.5rem] bg-black shadow-[0_32px_80px_rgba(0,0,0,0.22)] ring-1 ring-black/10 sm:min-h-[520px] sm:rounded-[2rem]">
-              <Image
-                src="/John.jpg"
-                alt="John Evans Okyere — Founder of Ananse AI Labs"
-                fill
-                sizes="(max-width: 1024px) 100vw, 34vw"
-                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                priority
-              />
-              {/* light vignette — just bottom dark for text legibility */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/10 to-transparent" />
-              {/* subtle left accent stripe */}
-              <div className="absolute bottom-0 left-0 top-0 w-[3px] bg-[#E74C3C]" />
-              <div className="absolute inset-x-0 bottom-0 px-7 pb-7 pt-16 lg:px-9 lg:pb-9">
-                <p className="font-[var(--font-syne)] text-2xl font-bold text-white drop-shadow-lg">
-                  John Evans Okyere
-                </p>
-                <p className="mt-1.5 text-sm leading-relaxed text-white/75">
-                  Founder &amp; AI/ML Engineer · Accra, Ghana
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
+          <blockquote
             id="profile-quote"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="relative flex min-h-[300px] flex-col justify-between overflow-hidden rounded-[2rem] bg-[#E8E3DA] p-7 sm:min-h-[520px] sm:p-9 lg:col-span-5 lg:p-11"
+            className="mt-12 max-w-2xl border-l-2 border-[#E74C3C] pl-5 sm:mt-14 sm:pl-6"
           >
-            <span className="pointer-events-none absolute -right-3 -top-14 font-[var(--font-syne)] text-[13rem] font-black leading-none text-black/[0.05] sm:text-[18rem]">
-              &ldquo;
-            </span>
-            <span className="relative text-xs font-semibold uppercase tracking-[0.16em] text-black/40">
-              A principle I keep close
-            </span>
-            <blockquote className="relative my-8">
-              <p className="font-[var(--font-syne)] text-2xl font-semibold leading-[1.35] tracking-[-0.025em] text-black sm:text-3xl lg:text-4xl">
-                &ldquo;We choose to go to the Moon in this decade and do the other
-                things, not because they are easy, but because they are hard.&rdquo;
-              </p>
-            </blockquote>
-            <cite className="relative border-t border-black/10 pt-5 text-sm font-semibold not-italic text-black/55 sm:text-base">
-              John F. Kennedy
+            <p className="text-lg leading-8 text-[#F7F4EF]/75">
+              &ldquo;{quote.text}&rdquo;
+            </p>
+            <cite className="mt-3 block text-sm not-italic text-[#F7F4EF]/45">
+              {quote.author} — my favourite quote
             </cite>
-          </motion.div>
-
-          <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="hidden flex-col rounded-[1.5rem] bg-[#101010] p-5 text-white sm:flex sm:rounded-[2rem] sm:p-9 lg:col-span-3"
-            >
-              <div className="flex items-end justify-between gap-4">
-                <p className="font-[var(--font-syne)] text-2xl font-bold tracking-[-0.03em] sm:text-3xl">
-                  Core stack
-                </p>
-                <span className="text-xs uppercase tracking-[0.16em] text-white/50">
-                  Production tools
-                </span>
-              </div>
-              <div className="mt-6 grid flex-1 grid-cols-2 content-center gap-2 sm:mt-8 sm:gap-2.5">
-                {techStack.map((tech, i) => (
-                  <motion.span
-                    key={tech.name}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: i * 0.035 }}
-                    whileHover={{ x: 3 }}
-                    className={`${i >= 6 ? "hidden sm:flex" : "flex"} min-w-0 items-center gap-2 rounded-xl border border-white/15 bg-white/[0.07] px-3 py-3 text-sm font-semibold text-white/90 transition-colors hover:border-white/30 hover:bg-white/[0.12] sm:gap-2.5 sm:px-3.5 sm:py-3`}
-                  >
-                    <span
-                      className="h-2 w-2 flex-shrink-0 rounded-full shadow-[0_0_12px_currentColor]"
-                      style={{ backgroundColor: tech.color, color: tech.color }}
-                    />
-                    {tech.name}
-                  </motion.span>
-                ))}
-              </div>
-          </motion.div>
-        </div>
-
-        <div className="mt-9 grid grid-cols-2 gap-3 sm:mt-14 sm:gap-4 lg:grid-cols-4">
-          {advantages.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.09 }}
-              whileHover={{ y: -8 }}
-              className={`${i >= 2 ? "hidden sm:flex" : "flex"} group relative min-h-[220px] flex-col justify-between overflow-hidden rounded-2xl bg-[#0d0d0d] p-4 transition-all duration-500 sm:min-h-[260px] sm:p-7`}
-              style={{
-                boxShadow: "0 2px 24px rgba(0,0,0,0.18)",
-              }}
-              onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = `0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px ${item.accent}30`;
-              }}
-              onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.boxShadow = "0 2px 24px rgba(0,0,0,0.18)";
-              }}
-            >
-              {/* oversized faded number in background */}
-              <span
-                className="pointer-events-none absolute -right-3 -top-4 font-[var(--font-syne)] text-[7rem] font-black leading-none opacity-[0.12] transition-opacity duration-500 group-hover:opacity-50"
-                style={{ color: item.accent }}
-              >
-                0{i + 1}
-              </span>
-
-              {/* top accent dot */}
-              <div className="flex items-center gap-2.5">
-                <span
-                  className="h-2.5 w-2.5 rounded-full transition-all duration-300 group-hover:shadow-[0_0_14px_currentColor]"
-                  style={{ backgroundColor: item.accent, color: item.accent }}
-                />
-                <span className="font-mono text-xs tracking-[0.14em] text-white/25">
-                  0{i + 1}
-                </span>
-              </div>
-
-              <div>
-                <h3 className="font-[var(--font-syne)] text-base font-bold leading-[1.2] text-white sm:text-xl">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-xs leading-5 text-white/50 transition-colors duration-300 group-hover:text-white/70 sm:text-sm sm:leading-7">
-                  {item.text}
-                </p>
-              </div>
-
-              {/* bottom accent line grows on hover */}
-              <div
-                className="absolute bottom-0 left-0 h-[2px] w-0 rounded-full transition-all duration-500 group-hover:w-full"
-                style={{ backgroundColor: item.accent }}
-              />
-            </motion.div>
-          ))}
+          </blockquote>
         </div>
       </div>
     </section>

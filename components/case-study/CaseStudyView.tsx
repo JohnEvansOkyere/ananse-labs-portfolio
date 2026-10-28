@@ -35,7 +35,7 @@ function Hero({ study }: { study: CaseStudy }) {
           transition={{ duration: 0.5 }}
         >
           <Link
-            href="/#work"
+            href="/work"
             className="group inline-flex items-center gap-2 text-sm font-medium text-[#F7F4EF]/50 transition-colors hover:text-[#F7F4EF]"
           >
             <ArrowLeft
@@ -400,7 +400,7 @@ function Takeaway({ study }: { study: CaseStudy }) {
                 <ArrowUpRight size={14} />
               </span>
             </a>
-            <Link href="/#work" className="pill-btn pill-btn-dark">
+            <Link href="/work" className="pill-btn pill-btn-dark">
               <span className="pill-label">See all work</span>
               <span className="pill-arrow">
                 <ArrowUpRight size={14} />

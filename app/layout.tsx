@@ -15,14 +15,22 @@ const syne = Syne({
   display: "swap",
 });
 
+/* The share image comes from app/opengraph-image.tsx. */
 export const metadata: Metadata = {
   metadataBase: new URL("https://ananse-labs-portfolio.vercel.app"),
-  title: "Ananse AI Labs — AI Automation Agency | Accra, Ghana",
+  title: {
+    default: "John Evans Okyere — Software & AI Engineer, Accra",
+    template: "%s | John Evans Okyere",
+  },
   description:
-    "We build intelligent systems, automation workflows, and AI-powered products for businesses across Africa and beyond. Founded by John Evans Okyere.",
+    "Software & AI engineer in Accra, Ghana. I build custom software, AI agents and automations for real businesses, and mentor people one-on-one.",
+  authors: [{ name: "John Evans Okyere" }],
   keywords: [
+    "John Evans Okyere",
+    "software engineer",
+    "custom software",
+    "AI engineer",
     "AI automation",
-    "AI agency",
     "Ghana",
     "Accra",
     "machine learning",
@@ -33,20 +41,19 @@ export const metadata: Metadata = {
     "LLM integration",
   ],
   openGraph: {
-    title: "Ananse AI Labs — AI Automation Agency",
+    title: "John Evans Okyere — Software & AI Engineer",
     description:
-      "Building intelligent systems from Accra to the world. AI automation, custom agents, and full-stack AI products.",
+      "I build custom software and AI systems for real businesses. Based in Accra, Ghana.",
     url: "https://ananse-labs-portfolio.vercel.app",
-    siteName: "Ananse AI Labs",
+    siteName: "John Evans Okyere",
     type: "website",
     locale: "en_US",
-    images: [{ url: "/ananselogo.jpg", width: 800, height: 800, alt: "Ananse AI Labs" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ananse AI Labs — AI Automation Agency",
-    description: "Building intelligent systems from Accra to the world.",
-    images: ["/ananselogo.jpg"],
+    title: "John Evans Okyere — Software & AI Engineer",
+    description:
+      "I build custom software and AI systems for real businesses. Based in Accra, Ghana.",
   },
   robots: {
     index: true,

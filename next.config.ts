@@ -13,6 +13,12 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  /* A short, shareable link to the game (public/chale-city is a static copy). */
+  async redirects() {
+    return [
+      { source: "/play", destination: "/chale-city/index.html", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;

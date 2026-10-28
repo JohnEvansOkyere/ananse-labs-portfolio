@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CaseStudyView from "@/components/case-study/CaseStudyView";
 import { caseStudies, getCaseStudy } from "@/data/case-studies";
+import { siteConfig } from "@/config/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!study) return {};
 
-  const title = `${study.subtitle} — Case Study | Ananse AI Labs`;
+  const title = `${study.subtitle} — Case Study`;
   const url = `/work/${study.slug}`;
 
   return {
@@ -34,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description: study.metaDescription,
       url,
-      siteName: "Ananse AI Labs",
+      siteName: siteConfig.name,
       type: "article",
       locale: "en_US",
       images: [{ url: study.image, alt: study.title }],

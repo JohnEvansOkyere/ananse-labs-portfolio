@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Standalone game served as static files, not part of the app.
+    "public/chale-city/**",
   ]),
 ]);
 
